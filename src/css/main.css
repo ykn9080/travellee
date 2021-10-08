@@ -55,7 +55,7 @@
   /* typography */
   --defaultFontSize: 87.5%;
   --headingFont: "Noto Sans KR", "Inconsolata", monospace;
-  --bodyFont: "Noto Sans KR", "Montserrat", sans-serif;
+  --bodyFont: "Maven Pro", "Noto Sans KR", "Montserrat", sans-serif;
   --smallText: 0.8em;
   --extraSmallText: 0.7em;
   /* rest */
@@ -70,6 +70,12 @@
 html {
   font-size: var(--defaultFontSize);
 }
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+body {
+  font-family: "Maven Pro", sans-serif;
+  padding-top: 70px;
+}
+
 @media only screen and (min-width: 576px) {
   :root {
     --defaultFontSize: 100%;
@@ -92,7 +98,6 @@ body {
 p {
   margin: 0;
   margin-bottom: 1rem;
-  max-width: 40em;
 }
 
 h1,
@@ -328,7 +333,9 @@ form > *:last-child {
   border-top-color: var(--clr-primary-5);
   animation: spinner 0.6s linear infinite;
 }
-
+section {
+  margin-bottom: 30px;
+}
 /*#########*/
 /* END OF GLOBALS */
 /*#########*/
@@ -495,9 +502,95 @@ form > *:last-child {
   border-radius: var(--borderRadius);
   border: 1px solid var(--grey-300);
   cursor: pointer;
-  position: absolute;
-  top: 2%;
+  width: 600px;
+}
+.expandimg {
+  transition: transform 0.2s ease-out;
+
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--grey-300);
+  position: relative;
+  cursor: pointer;
+}
+
+.expandimg:hover {
+  /* -webkit-transform: scale(2);
+  transform: scale(2); */
+  position: fixed;
+  width: 60vw;
+  top: 5%;
   left: 20%;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.animated {
+  position: relative;
+}
+
+.animated-info {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+  min-width: 260px;
+  position: relative;
+}
+
+.animated-item {
+  color: #ffc200;
+}
+
+.animated-item {
+  font-size: 38px;
+  line-height: inherit;
+  display: block;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  animation: BottomTotop 6s linear infinite 0s;
+}
+.animated-item:nth-child(2n + 2) {
+  animation-delay: 2s;
+}
+.animated-item:nth-child(3n + 3) {
+  animation-delay: 4s;
+}
+
+@keyframes BottomTotop {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.slidercontainer {
+  padding: 30px;
+  background: #ced5d8;
 }
 /*#########*/
 /* Work */
@@ -845,4 +938,19 @@ form > *:last-child {
   padding-bottom: 0.75rem;
   color: var(--primary-500);
   text-transform: capitalize;
+}
+
+.gridtwo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+.gridtwoone {
+  display: grid;
+  grid-template-columns: 2fr, 1fr;
+  column-gap: 2.5em;
+}
+.gridtwo30 {
+  display: grid;
+  grid-template-columns: 1fr, 30px;
 }

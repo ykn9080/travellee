@@ -1,3 +1,5 @@
+const { FaImages } = require("react-icons/fa")
+
 module.exports = {
   siteMetadata: {
     title: `Youngki Nam's Homepage`,
@@ -13,6 +15,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `works`,
+        path: `${__dirname}/src/works`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -36,6 +45,21 @@ module.exports = {
       options: {
         fonts: [`Noto+Sans+KR\:100,300,400,500,700,900`],
         display: "swap",
+      },
+    },
+    `gatsby-remark-images`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
