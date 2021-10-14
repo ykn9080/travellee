@@ -1,0 +1,38 @@
+.portfolio {
+  text-align: center;
+}
+.portfolio > h2 {
+  font-size: 3em;
+  margin-top: 80px;
+}
+.portfolio > h3 {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.work {
+  display: flex;
+  margin: 0 10px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.work > div {
+  width: 30%;
+  padding: 10px;
+
+  border: solid 1px gray;
+}
+.work h3 {
+  margin: 20px auto 0px;
+  font-weight: 500;
+}
+.work p {
+  font-weight: 100;
+  max-width: 100ch;
+}
+.Img1 {
+  height: 200px;
+  border: solid 1px gray;
+}

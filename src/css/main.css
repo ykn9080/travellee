@@ -140,9 +140,16 @@ small,
 }
 
 ul {
-  padding: 0;
-  list-style-type: none;
+  list-style: square;
 }
+
+li {
+  margin: 0;
+}
+ol {
+  list-style: decimal outside;
+}
+
 a {
   text-decoration: none;
 }
@@ -336,6 +343,29 @@ form > *:last-child {
 section {
   margin-bottom: 30px;
 }
+
+blockquote {
+  border-left: 0.4em solid #039be5;
+  background: #f9f9f9;
+  margin: 0.5em 10px;
+  padding: 0.5em 10px;
+}
+blockquote:before,
+blockquote:after {
+  font-family: Calibri;
+  color: #039be5;
+  font-size: 14px;
+}
+
+blockquote cite {
+  font-size: 50%;
+  text-align: center;
+  top: 50%;
+}
+blockquote cite:before {
+  content: " \2015 ";
+}
+
 /*#########*/
 /* END OF GLOBALS */
 /*#########*/

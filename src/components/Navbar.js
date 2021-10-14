@@ -33,7 +33,7 @@ const Navbar = () => {
             interests
           </Link>
           <Link
-            to="/work"
+            to="/works"
             className="nav-link"
             activeClassName="active-link"
             onClick={() => setShow(false)}
@@ -48,14 +48,14 @@ const Navbar = () => {
           >
             recipes
           </Link> */}
-          <Link
+          {/* <Link
             to="/tags"
             className="nav-link"
             activeClassName="active-link"
             onClick={() => setShow(false)}
           >
             tags
-          </Link>
+          </Link> */}
           <Link
             to="/about"
             className="nav-link"

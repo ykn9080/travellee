@@ -7,12 +7,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Button } from "antd"
-import {
-  FaSearchPlus,
-  FaArrowCircleRight,
-  FaArrowCircleLeft,
-} from "react-icons/fa"
-import { FcRight } from "react-icons/fc"
+import { FaSearchPlus } from "react-icons/fa"
 
 export default function Home() {
   const settings = {
