@@ -4,6 +4,7 @@ module.exports = {
     description: `Fullstack developer, experienced in MERN, sql database, docker`,
     author: `@ykn9080`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    logo: `${__dirname}/src/images/yknam1.jpg`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -20,6 +21,13 @@ module.exports = {
       options: {
         name: `works`,
         path: `${__dirname}/src/works`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `interests`,
+        path: `${__dirname}/src/interests`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -73,6 +81,12 @@ module.exports = {
       resolve: `gatsby-plugin-theme-ui`,
       options: {
         preset: "@theme-ui/preset-funk",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-breadcrumb`,
+      options: {
+        useAutoGen: true,
       },
     },
     // {

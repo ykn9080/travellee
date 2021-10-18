@@ -40,6 +40,7 @@
   /* rest */
   --black: #222;
   --white: #fff;
+  --yellow: yellow;
   --red-light: #f8d7da;
   --red-dark: #842029;
   --green-light: #d1e7dd;
@@ -73,7 +74,6 @@ html {
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
   font-family: "Maven Pro", sans-serif;
-  padding-top: 70px;
 }
 
 @media only screen and (min-width: 576px) {
@@ -377,19 +377,22 @@ blockquote cite:before {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #397db8;
+  margin-bottom: 50px;
 }
 .nav-center {
   width: 90vw;
   max-width: var(--max-width);
 }
 .nav-header {
-  height: 6rem;
+  /* height: 4rem; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .nav-header img {
-  width: 200px;
+  height: auto;
+  width: 70px;
   margin-left: -6px;
   margin-bottom: -9px;
 }
@@ -408,6 +411,7 @@ blockquote cite:before {
 }
 .show-links {
   height: 23.9375rem;
+  color: var(--red-light);
 }
 
 .nav-link {
@@ -415,14 +419,15 @@ blockquote cite:before {
   text-align: center;
   font-size: 1.5rem;
   text-transform: capitalize;
-  color: var(--grey-1000);
+  color: var(--grey-100);
   letter-spacing: var(--letterSpacing);
-  padding: 1rem 0;
+  padding: 0;
   border-top: 1px solid var(--grey-500);
   transition: var(--transition);
 }
 .active-link {
-  color: var(--primary-500);
+  color: var(--yellow);
+  text-decoration: underline;
 }
 .contact-link {
   display: flex;
@@ -434,7 +439,7 @@ blockquote cite:before {
 
 @media screen and (min-width: 992px) {
   .navbar {
-    height: 6rem;
+    height: 3.5rem;
   }
   .nav-center {
     display: flex;
@@ -535,8 +540,8 @@ blockquote cite:before {
   width: 600px;
 }
 .expandimg {
-  transition: transform 0.2s ease-out;
-
+  transition: transform 5s;
+  transition-delay: 1s;
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: var(--borderRadius);
   border: 1px solid var(--grey-300);
@@ -546,7 +551,7 @@ blockquote cite:before {
 
 .expandimg:hover {
   /* -webkit-transform: scale(2);
-  transform: scale(2); */
+  transform: scale(1);*/
   position: fixed;
   width: 60vw;
   top: 5%;
@@ -693,11 +698,12 @@ blockquote cite:before {
 
 .hero-img {
   height: 100%;
-  border-radius: var(--borderRadius);
+  /* border-radius: var(--borderRadius); */
 }
 .hero {
   height: 40vh;
   position: relative;
+  margin-top: -50px;
   margin-bottom: 2rem;
 }
 .hero-container {
@@ -710,7 +716,7 @@ blockquote cite:before {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
-  border-radius: var(--borderRadius);
+  /* border-radius: var(--borderRadius); */
 }
 .hero-text {
   color: var(--white);
@@ -983,4 +989,25 @@ blockquote cite:before {
 .gridtwo30 {
   display: grid;
   grid-template-columns: 1fr, 30px;
+}
+
+.work {
+  display: grid;
+  background-color: white;
+  justify-content: center;
+  max-width: 1200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin: 0 auto;
+}
+.work h3 {
+  margin: 20px auto 0px;
+  font-weight: 500;
+}
+
+.spin {
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
 }

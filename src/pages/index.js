@@ -8,8 +8,9 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Button } from "antd"
 import { FaSearchPlus } from "react-icons/fa"
+import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 
-export default function Home() {
+export default function Home({ location }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -24,22 +25,28 @@ export default function Home() {
   return (
     <Layout>
       <SEO title="Home " />
-      <main className="page">
-        <header className="hero">
-          <StaticImage
-            src="../images/yknam1.jpg"
-            alt="mypic"
-            className="hero-img"
-            placeholder="tracedSVG"
-            layout="fullWidth"
-          ></StaticImage>
-          <div className="hero-container">
-            <div className="hero-text">
-              <h1>Fullstack Developer</h1>
-              <h4>MEAN stack, Docker</h4>
-            </div>
+      <Breadcrumb
+        location={location}
+        crumbLabel="Home"
+        crumbStyle={{ color: "#666" }}
+        crumbActiveStyle={{ color: "orange" }}
+      />
+      <header className="hero">
+        <StaticImage
+          src="../images/yknam1.jpg"
+          alt="mypic"
+          className="hero-img"
+          placeholder="tracedSVG"
+          layout="fullWidth"
+        ></StaticImage>
+        <div className="hero-container">
+          <div className="hero-text">
+            <h1>Fullstack Developer</h1>
+            <h4>MEAN stack, Docker</h4>
           </div>
-        </header>
+        </div>
+      </header>
+      <main className="page">
         {/* <section>
           <small class="small-text">
             Welcome to <span class="mobile-block">my portfolio website!</span>

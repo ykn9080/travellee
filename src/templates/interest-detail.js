@@ -33,7 +33,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const WorkDetail = ({ data }) => {
+const InterestDetail = ({ data }) => {
   const classes = useStyles()
   const {
     title,
@@ -117,29 +117,6 @@ const WorkDetail = ({ data }) => {
               </div>
             </div>
           </section>
-
-          {/* <div className="recipe-page">
-             <div style={{ marginBottom: 10 }}>
-              <TagWork tagtitle={title} />
-            </div> 
-            <section className="recipe-hero">
-              <article>
-                <h2>{title}</h2>
-                {path && (
-                  <Button type="primary" onClick={handleClickOpen}>
-                    Show Demo
-                  </Button>
-                )}
-                <p>{description.description}</p> 
-              </article>
-               <GatsbyImage
-                image={pathToImage}
-                alt={title}
-                className="about-img"
-              />
-            </section>
-          </div>
-          <div>{code && <Code text={code?.code} />}</div> */}
         </main>
       </Layout>
       <Dialog
@@ -185,13 +162,12 @@ const WorkDetail = ({ data }) => {
 }
 
 export const query = graphql`
-  query DetailWork($slug: String) {
+  query DetailInterest($slug: String) {
     mdx(frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         title
         excerpt
         github
-        npmorg
         demo
         videoSourceURL
         videoTitle
@@ -208,4 +184,4 @@ export const query = graphql`
   }
 `
 
-export default WorkDetail
+export default InterestDetail

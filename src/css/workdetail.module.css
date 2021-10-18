@@ -3,11 +3,45 @@
   background-color: white;
   justify-content: center;
   max-width: 1200px;
-  grid-template-columns: 100px 3fr 1fr;
-  grid-gap: 10px;
-  margin: 20px 20px;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 30px;
+  margin: 0 auto;
 }
 .work h3 {
   margin: 20px auto 0px;
   font-weight: 500;
+}
+
+.toc {
+  padding: 29px 30px 5px;
+  /* border-radius: 0.42857143rem;
+  border: 0.07142857rem solid #cecfd5; */
+  margin-top: 100px;
+  margin-bottom: 1.71428571rem;
+}
+.toc h6 {
+  display: block;
+  font-size: 0.8em;
+  margin-block-start: 2.33em;
+  margin-block-end: 2.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+
+  color: #9799;
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.content {
+  color: black;
+  font-weight: 100;
+  font-size: 0.7em;
+  padding-left: 0.3rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+}
+.content:hover {
+  text-decoration: underline;
+  color: blue;
 }

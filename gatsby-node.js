@@ -20,6 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allMdx {
         nodes {
           frontmatter {
+            type
             slug
           }
         }
@@ -29,8 +30,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   data.allMdx.nodes.forEach(node => {
     actions.createPage({
-      path: "/works/" + node.frontmatter.slug,
-      component: path.resolve("./src/templates/work-detail.js"),
+      path: `/${node.frontmatter.type}s/${node.frontmatter.slug}`,
+      component: path.resolve(
+        `./src/templates/${node.frontmatter.type}-detail.js`
+      ),
       context: { slug: node.frontmatter.slug },
     })
   })

@@ -11,28 +11,26 @@
 }
 
 .work {
-  display: flex;
-  margin: 0 10px;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: flex-start;
-  gap: 10px;
+  display: grid;
+  background-color: white;
+  justify-content: center;
+  max-width: 1200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin: 0 auto;
 }
-.work > div {
-  width: 30%;
-  padding: 10px;
-
-  border: solid 1px gray;
-}
-.work h3 {
+.work h4 {
   margin: 20px auto 0px;
   font-weight: 500;
 }
 .work p {
   font-weight: 100;
-  max-width: 100ch;
+  padding: 5px;
 }
 .Img1 {
   height: 200px;
   border: solid 1px gray;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
