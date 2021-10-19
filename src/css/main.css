@@ -376,9 +376,8 @@ blockquote cite:before {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #397db8;
-  margin-bottom: 50px;
 }
 .nav-center {
   width: 90vw;
@@ -393,8 +392,6 @@ blockquote cite:before {
 .nav-header img {
   height: auto;
   width: 70px;
-  margin-left: -6px;
-  margin-bottom: -9px;
 }
 .nav-btn {
   padding: 0.15rem 0.75rem;
@@ -429,11 +426,12 @@ blockquote cite:before {
   color: var(--yellow);
   text-decoration: underline;
 }
-.contact-link {
+.theme-link {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  cursor: pointer;
 }
-.contact-link a {
+.theme-link a {
   padding: 0.15rem 1rem;
 }
 
@@ -540,26 +538,34 @@ blockquote cite:before {
   width: 600px;
 }
 .expandimg {
-  transition: transform 5s;
-  transition-delay: 1s;
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: var(--borderRadius);
   border: 1px solid var(--grey-300);
   position: relative;
   cursor: pointer;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+  margin-top: 30px;
 }
 
 .expandimg:hover {
-  /* -webkit-transform: scale(2);
-  transform: scale(1);*/
-  position: fixed;
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+
+  /* position: absolute;
   width: 60vw;
   top: 5%;
-  left: 20%;
-  z-index: 100;
-  cursor: pointer;
+  left: 20%; 
+  z-index: 100;*/
 }
-
+.enlargeicon {
+  margin-top: -15px;
+  display: flex;
+  justify-content: flex-end;
+}
+.enlargeicon > span {
+  margin-top: -10px;
+}
 .animated {
   position: relative;
 }
@@ -703,7 +709,7 @@ blockquote cite:before {
 .hero {
   height: 40vh;
   position: relative;
-  margin-top: -50px;
+  margin-top: -32px;
   margin-bottom: 2rem;
 }
 .hero-container {
@@ -979,7 +985,7 @@ blockquote cite:before {
 .gridtwo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 5px;
+  grid-gap: 10px;
 }
 .gridtwoone {
   display: grid;
@@ -1010,4 +1016,94 @@ blockquote cite:before {
   margin-bottom: 20px;
   padding: 30px 50px;
   text-align: center;
+}
+
+nav.breadcrumb {
+  font-size: 0.9rem;
+  color: var(--textColor);
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  display: grid;
+  background-color: var(--backgroundColor);
+  justify-content: center;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.headtitle {
+  display: grid;
+  background-color: var(--backgroundColor);
+  justify-content: center;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Work Sans", sans-serif;
+  color: var(--textColor);
+}
+.bodycontent {
+  display: grid;
+  background-color: var(--backgroundColor);
+  justify-content: center;
+  max-width: 1200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin: 0 auto;
+  color: var(--textColor);
+}
+.bodycontent h4,
+h5 {
+  margin: 20px auto 0px;
+  font-weight: 500;
+  color: var(--textColor);
+}
+.bodycontent p {
+  font-weight: 100;
+  padding: 5px;
+  color: var(--textColor);
+}
+
+.Img1 {
+  height: 200px;
+  border: solid 1px gray;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.ImgContainer {
+  height: 300px;
+  background-color: var(--backgroundColor);
+  border: solid 1px gray;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.Img2 {
+  margin-top: 20px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+.Img2div {
+  min-height: 100px;
+}
+@media screen and (max-width: 1200px) {
+  .bodycontent {
+    grid-template-columns: 1fr 1fr;
+    margin: 0 10px;
+  }
+  .headtitle,
+  nav.breadcrumb {
+    margin: 0 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .bodycontent {
+    grid-template-columns: 1fr;
+  }
+}
+.dark-theme {
+  --backgroundColor: var(--grey-1000);
+  --textColor: var(--grey-0);
 }

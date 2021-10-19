@@ -1,58 +1,73 @@
 ---
-title: MinIO
-slug: minio
+title: Swagger
+slug: swagger
 seq: 5
 type: interest
-featureImage: ../images/interest/minio_logo.png
-thumb: ../images/interest/minio_logo.png
+featureImage: ../images/interest/swagger_logo.png
+thumb: ../images/interest/swagger_logo.png
 github:
 demo: http://imcmaster.iptime.org:9110
-excerpt: s3 compatible storage solution. Custom install with docker-compose
+excerpt: api 서비스 documentation용으로 사용되는 swagger와 jsdoc을 결합한 swagger doc을 활용한 document
 ---
 
 $$
-|bash|Backup docker volume and push to minIO|도커볼륨의 백업을 압축후(tar.bz2 포맷) minIO로 업로드하는 script
-#!/bin/bash
+|yaml|swagger setting
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
-array=(mysql-data,postgres-data,wp-content, mongodbdata ,minio-data)
+module.exports = (app) => {
+  // Extended: https://swagger.io/specification/#infoObject
+  const swaggerOptions = {
+    swaggerDefinition: {
+      info: {
+        version: "1.0.0",
+        title: "Customer API",
+        description: "Customer API Information",
+        contact: {
+          name: "Amazing Developer",
+        },
+        servers: [`${process.env.HOST}:${process.env.PORT}`],
+      },
+    },
+    // ['.routes/*.js']
+    apis: ["./router/*.js", "./controllers/*.js"],
+  };
 
-echo "Array size: ${#array[*]}"
+  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+};
 
-echo "Array items:"
-for item in ${array[*]}
-do
-    printf "   %s\n" $item
-    docker run --rm -v $item:/volume -v /tmp:/backup alpine tar -cjf /backup/$item.tar.bz2 -C /volume ./
-    s3cmd -c ~/.s3cfg_minio put /tmp/$item.tar.bz2 s3://backup
-done
-
-$$$$$|bash|Restore code|Get from minIO  and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후 도커볼륨으로 save하는 script
-#!/bin/bash
-array=(mysql-data postgres-data mongodbdata wp-content minio-data)
-
-echo "Array items:"
-
-for item in ${array[*]}
-do
-
-        s3cmd -c ~/.s3cfg_minio_nam --force get s3://backup/$item.tar.bz2 /tmp/
-        volumes=$(docker volume ls)
-
-        exist=0;
-        for vol in ${volumes[*]}
-        do
-        if [ $vol == $item ]
-        then
-                exist=1
-        fi
-        done
-
-        if [ $exist == 0 ]
-        then
-        docker volume create $item
-        docker run --rm -v $item:/volume -v /tmp:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/$item.tar.bz2"
-
-        printf "   %s\n" $item
-        fi
-done
+$$$$$|yaml|swagger jsdocs tag
+   /**
+   * @swagger
+   * /customers:
+   *  get:
+   *    description: Use to request all customers
+   *    responses:
+   *      '200':
+   *        description: A successful response
+   */
+  app.get("/customers", (req, res) => {
+    res.status(200).send("Customer results");
+  });
+  /**
+   * @swagger
+   * /customers:
+   *    put:
+   *      description: Use to return all customers
+   *    parameters:
+   *      - name: customer
+   *        in: query
+   *        description: Name of our customer
+   *        required: false
+   *        schema:
+   *          type: string
+   *          format: string
+   *    responses:
+   *      '201':
+   *        description: Successfully created user
+   */
+  app.put("/customer", (req, res) => {
+    res.status(200).send("Successfully updated customer");
+  });
 $$

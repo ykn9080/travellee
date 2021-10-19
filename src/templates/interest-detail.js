@@ -6,6 +6,7 @@ import SEO from "../components/SEO"
 import Img from "gatsby-image"
 import * as styles from "../css/workdetail.module.css"
 
+import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 import { Button, Spin } from "antd"
 import Code from "../components/Code"
 // import TagWork from "../components/TagWork"
@@ -33,10 +34,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const InterestDetail = ({ data }) => {
+const InterestDetail = ({ data, location }) => {
+  console.log(location)
   const classes = useStyles()
   const {
     title,
+    slug,
     excerpt,
     featureImage,
     videoSourceURL,
@@ -70,13 +73,21 @@ const InterestDetail = ({ data }) => {
   return (
     <>
       <Layout>
-        <SEO title={title} />
+        <SEO title={title} />{" "}
+        <Breadcrumb location={location} crumbLabel={slug} />
         <main className={styles.work}>
           <section>
             <h2>{title}</h2>
             <div>{excerpt}</div>
-            <Img fluid={featureImage.childImageSharp.fluid} />
-            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            <div className={styles.Imgcontainer}>
+              <Img
+                className={styles.Imgdetail}
+                fluid={featureImage.childImageSharp.fluid}
+              />
+            </div>
+            <div style={{ clear: "both" }}>
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            </div>
             <div id="showyoutube">
               <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
             </div>
@@ -166,6 +177,7 @@ export const query = graphql`
     mdx(frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         title
+        slug
         excerpt
         github
         demo

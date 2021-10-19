@@ -1,58 +1,36 @@
 ---
-title: MinIO
-slug: minio
+title: Github Action
+slug: githubaction
 seq: 5
 type: interest
-featureImage: ../images/interest/minio_logo.png
-thumb: ../images/interest/minio_logo.png
-github:
+featureImage: ../images/interest/githubaction_logo.png
+thumb: ../images/interest/githubaction_logo2.png
+github: https://github.com/ykn9080/imctemplate/actions
 demo: http://imcmaster.iptime.org:9110
-excerpt: s3 compatible storage solution. Custom install with docker-compose
+excerpt: github action을 활용하여 git push시에 자동으로 빌드 및 배치가 되도록 구
 ---
 
 $$
-|bash|Backup docker volume and push to minIO|도커볼륨의 백업을 압축후(tar.bz2 포맷) minIO로 업로드하는 script
-#!/bin/bash
+|yaml|Github action workflow|docker image에서 pull하여 container를 생성하는 예제임.
+remote host에서 작동하는 사례임. 여기에서는 digitalocean 사이트에서 액션이 수행되도록설정된 사례
 
-array=(mysql-data,postgres-data,wp-content, mongodbdata ,minio-data)
-
-echo "Array size: ${#array[*]}"
-
-echo "Array items:"
-for item in ${array[*]}
-do
-    printf "   %s\n" $item
-    docker run --rm -v $item:/volume -v /tmp:/backup alpine tar -cjf /backup/$item.tar.bz2 -C /volume ./
-    s3cmd -c ~/.s3cfg_minio put /tmp/$item.tar.bz2 s3://backup
-done
-
-$$$$$|bash|Restore code|Get from minIO  and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후 도커볼륨으로 save하는 script
-#!/bin/bash
-array=(mysql-data postgres-data mongodbdata wp-content minio-data)
-
-echo "Array items:"
-
-for item in ${array[*]}
-do
-
-        s3cmd -c ~/.s3cfg_minio_nam --force get s3://backup/$item.tar.bz2 /tmp/
-        volumes=$(docker volume ls)
-
-        exist=0;
-        for vol in ${volumes[*]}
-        do
-        if [ $vol == $item ]
-        then
-                exist=1
-        fi
-        done
-
-        if [ $exist == 0 ]
-        then
-        docker volume create $item
-        docker run --rm -v $item:/volume -v /tmp:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/$item.tar.bz2"
-
-        printf "   %s\n" $item
-        fi
-done
+name: remote ssh command
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DIGITALOCEAN_HOST }}
+          username: root
+          password: ${{ secrets.DIGITALOCEAN_PASSWORD }}
+          port: 22
+          script: |
+            docker rm -f imctemplatec
+            docker rmi -f imctemplate
+            docker pull yknam/imctemplate
+            docker run --rm --network kong-net --name imctemplatec -p 9010:9010 -d yknam/imctemplate
 $$

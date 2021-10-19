@@ -9,7 +9,14 @@
   font-size: 2em;
   font-weight: 400;
 }
-
+.headtitle {
+  display: grid;
+  background-color: white;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .work {
   display: grid;
   background-color: white;

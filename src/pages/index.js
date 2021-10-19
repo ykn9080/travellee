@@ -25,12 +25,7 @@ export default function Home({ location }) {
   return (
     <Layout>
       <SEO title="Home " />
-      <Breadcrumb
-        location={location}
-        crumbLabel="Home"
-        crumbStyle={{ color: "#666" }}
-        crumbActiveStyle={{ color: "orange" }}
-      />
+      <Breadcrumb location={location} crumbLabel="Home" />
       <header className="hero">
         <StaticImage
           src="../images/yknam1.jpg"
@@ -47,45 +42,14 @@ export default function Home({ location }) {
         </div>
       </header>
       <main className="page">
-        {/* <section>
-          <small class="small-text">
-            Welcome to <span class="mobile-block">my portfolio website!</span>
-          </small>
-          <h1 class="animated animated-text">
-            <span class="mr-2">Hey folks, I'm</span>
-            <div class="animated-info">
-              <span class="animated-item">Marvel Sann</span>
-              <span class="animated-item">Web Designer</span>
-              <span class="animated-item">UI Specialist</span>
-            </div>
-          </h1>
-
-          <p>
-            Building a successful product is a challenge. I am highly energetic
-            in user experience design, interfaces and web development.
-          </p>
-
-          <div class="custom-btn-group mt-4">
-            <a href="#" class="btn mr-lg-2 custom-btn">
-              <i class="uil uil-file-alt"></i> Download Resume
-            </a>
-            <a
-              href="#contact"
-              class="btn custom-btn custom-btn-bg custom-btn-link"
-            >
-              Get a free quote
-            </a>
-          </div>
-        </section> */}
-
         <section className="gridtwo">
           <article>
-            <h3 class="animated animated-text">
-              <span class="mr-2">풀스택 웹개발자 -</span>
-              <div class="animated-info">
-                <span class="animated-item">Web Mobile</span>
-                <span class="animated-item">MERN SQL</span>
-                <span class="animated-item">Docker CI/CD</span>
+            <h3 className="animated animated-text">
+              <span className="mr-2">풀스택 웹개발자 -</span>
+              <div className="animated-info">
+                <span className="animated-item">Web Mobile</span>
+                <span className="animated-item">MERN SQL</span>
+                <span className="animated-item">Docker CI/CD</span>
               </div>
             </h3>
             <p>
@@ -105,12 +69,12 @@ export default function Home({ location }) {
               alt="myskill"
               placeholder="tracedSVG"
             ></StaticImage>
-            <div style={{ marginTop: 15, textAlign: "right" }}>
-              <FaSearchPlus />
-              <span style={{ marginLeft: 5 }}>mouse over to enlarge</span>
-            </div>
           </div>
         </section>
+        <div className="enlargeicon">
+          <FaSearchPlus />
+          <span>mouse over to enlarge</span>
+        </div>
 
         <section>
           <article>

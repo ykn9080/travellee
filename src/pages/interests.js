@@ -3,40 +3,35 @@ import { graphql, Link } from "gatsby"
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
-import * as styles from "../css/works.module.css"
 import Img from "gatsby-image"
 import { wordCut } from "../utility"
 
 const InterestList = ({ data, location }) => {
-  console.log(data, styles)
   const interests = data.allMdx.nodes
 
   return (
     <Layout>
       <Seo title="Interest List" />
-      <Breadcrumb
-        location={location}
-        crumbLabel="Interest"
-        crumbStyle={{ color: "#666" }}
-        crumbActiveStyle={{ color: "orange" }}
-      />
-      <div className={styles.portfolio}>
-        <h2>Interest List</h2>
-        <h3>What I am usually using or interested</h3>
+      <Breadcrumb location={location} crumbLabel="Interest" />
+      <div className="headtitle">
+        <h3>Interest List</h3>
+        <p>What I am usually using or interested</p>
       </div>
-      <div className={styles.work}>
+      <div className="bodycontent">
         {interests.map(interest => {
           return (
-            <div>
+            <div className="ImgContainer">
               <Link
                 to={`/interests/${interest.frontmatter.slug}`}
                 key={interest.title}
               >
-                <h4>{interest.frontmatter.title}</h4>
-                <Img
-                  className={styles.Img1}
-                  fluid={interest.frontmatter.thumb.childImageSharp.fluid}
-                />
+                <div className="Img2div">
+                  <Img
+                    className="Img2"
+                    fluid={interest.frontmatter.thumb.childImageSharp.fluid}
+                  />
+                </div>
+                <h5>{interest.frontmatter.title}</h5>
                 <p title={interest.frontmatter.excerpt}>
                   {wordCut(interest.frontmatter.excerpt, 80, "", "...")}
                 </p>
@@ -53,6 +48,7 @@ export const query = graphql`
     allMdx(filter: { frontmatter: { type: { eq: "interest" } } }) {
       nodes {
         frontmatter {
+          title
           demo
           videoTitle
           videoSourceURL

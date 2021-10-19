@@ -4,35 +4,30 @@ import { graphql, Link } from "gatsby"
 import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"
-import * as styles from "../../css/works.module.css"
+
 import Img from "gatsby-image"
 import { wordCut } from "../../utility"
 
 const WorkList = ({ data, location }) => {
-  console.log(data, styles)
+  console.log(data)
   const works = data.allMdx.nodes
 
   return (
     <Layout>
       <Seo title="Work List" />
-      <Breadcrumb
-        location={location}
-        crumbLabel="Work"
-        crumbStyle={{ color: "#666" }}
-        crumbActiveStyle={{ color: "orange" }}
-      />
-      <div className={styles.portfolio}>
-        <h2>Work List</h2>
-        <h3>Project & Modules I've created</h3>
+      <Breadcrumb location={location} crumbLabel="Work" />
+      <div className="headtitle">
+        <h3>Work List</h3>
+        <p>Project & Modules I've created</p>
       </div>
-      <div className={styles.work}>
+      <div className="bodycontent">
         {works.map(work => {
           return (
             <div>
               <Link to={`/works/${work.frontmatter.slug}`} key={work.title}>
-                <h4>{work.frontmatter.title}</h4>
+                <h5>{work.frontmatter.title}</h5>
                 <Img
-                  className={styles.Img1}
+                  className="Img1"
                   fluid={work.frontmatter.thumb.childImageSharp.fluid}
                 />
                 <p title={work.frontmatter.excerpt}>
@@ -51,6 +46,7 @@ export const query = graphql`
     allMdx(filter: { frontmatter: { type: { eq: "work" } } }) {
       nodes {
         frontmatter {
+          title
           demo
           videoTitle
           videoSourceURL

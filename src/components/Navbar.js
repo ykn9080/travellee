@@ -1,11 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { FiAlignJustify } from "react-icons/fi"
-import logo from "../images/yknamlogo1.png"
+import { FaMoon, FaSun } from "react-icons/fa"
+import logo from "../images/clogo.png"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
+  const [theme, setTheme] = useState("moon")
+  const themeChange = () => {
+    document.body.classList.toggle("dark-theme")
+    if (theme === "moon") {
+      setTheme("sun")
+    } else {
+      setTheme("moon")
+    }
+  }
+  useEffect(() => {
+    const ctheme = document.body.classList.contains("dark-theme")
+    if (ctheme) setTheme("sun")
+  }, [])
   return (
     <>
       <nav className="navbar">
@@ -27,14 +41,7 @@ const Navbar = () => {
             >
               home
             </Link>
-            <Link
-              to="/interests"
-              className="nav-link"
-              activeClassName="active-link"
-              onClick={() => setShow(false)}
-            >
-              interests
-            </Link>
+
             <Link
               to="/works"
               className="nav-link"
@@ -42,6 +49,14 @@ const Navbar = () => {
               onClick={() => setShow(false)}
             >
               works
+            </Link>
+            <Link
+              to="/interests"
+              className="nav-link"
+              activeClassName="active-link"
+              onClick={() => setShow(false)}
+            >
+              interests
             </Link>
             {/* <Link
             to="/recipes"
@@ -67,14 +82,12 @@ const Navbar = () => {
             >
               about
             </Link>
-            <div className="nav-link contact-link">
-              <Link
-                to="/contact"
-                className="btn"
-                onClick={() => setShow(false)}
-              >
-                contact
-              </Link>
+            <div className="nav-link theme-link">
+              {theme === "moon" ? (
+                <FaMoon onClick={themeChange} />
+              ) : (
+                <FaSun onClick={themeChange} />
+              )}
             </div>
           </div>
         </div>
