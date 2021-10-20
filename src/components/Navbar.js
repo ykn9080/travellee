@@ -26,7 +26,16 @@ const Navbar = () => {
         <div className="nav-center">
           <div className="nav-header">
             <Link to="/">
-              <img src={logo} alt="youngki nam" />
+              {/* <img src={logo} alt="youngki nam" /> */}
+              <span
+                style={{
+                  fontFamily: "Yeseva One",
+                  color: "white",
+                  fontSize: 30,
+                }}
+              >
+                Young
+              </span>
             </Link>
             <button className="nav-btn" onClick={() => setShow(!show)}>
               <FiAlignJustify />
@@ -58,22 +67,7 @@ const Navbar = () => {
             >
               interests
             </Link>
-            {/* <Link
-            to="/recipes"
-            className="nav-link"
-            activeClassName="active-link"
-            onClick={() => setShow(false)}
-          >
-            recipes
-          </Link> */}
-            {/* <Link
-            to="/tags"
-            className="nav-link"
-            activeClassName="active-link"
-            onClick={() => setShow(false)}
-          >
-            tags
-          </Link> */}
+
             <Link
               to="/about"
               className="nav-link"

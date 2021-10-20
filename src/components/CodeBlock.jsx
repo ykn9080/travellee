@@ -1,10 +1,9 @@
 import React from 'react'
 import Highlight, {defaultProps} from 'prism-react-renderer'
-import {mdx} from '@mdx-js/react'
 import theme from 'prism-react-renderer/themes/vsDark'
 
 export default ({children, className}) => {
-  const language = className?.replace(/language-/, '') || "javascript"
+  const language = className?.replace(/language-/, '') || "js"
 
 
   return (

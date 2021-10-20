@@ -12,8 +12,9 @@ videoTitle:
 excerpt: mongodb, mongoose를 활용한 CRUD api. node model을 생성한 후 각각의 CRUD api를 작성할 필요없이 사용가능하다.
 ---
 
-$$
 |javascript|model|
+
+```js
 var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const models = {};
@@ -176,10 +177,14 @@ module.exports = (Collection) => {
   router.delete("/:_id", remove);
   return router;
 };
-$$$$$|javascript|route|path별로 controller와 model을 지정해준다.
+```
+
+|javascript|route|path별로 controller와 model을 지정해준다.
+
+```js
 const crud = require("../controllers/reuseCRUD");//controller
 //route index에서 express 전송(app)
 module.exports = (app) => {
   const model = require("../models/model");
   app.use("/allpurpose", crud(model.Control));
-$$
+```

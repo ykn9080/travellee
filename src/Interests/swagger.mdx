@@ -10,12 +10,14 @@ demo: http://imcmaster.iptime.org:9110
 excerpt: api 서비스 documentation용으로 사용되는 swagger와 jsdoc을 결합한 swagger doc을 활용한 document
 ---
 
-$$
 |yaml|swagger setting
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+셋팅설정에서 apis부분이 빌드시 document화 할 파일을 지정한다.
 
-module.exports = (app) => {
+```js
+const swaggerJsDoc = require("swagger-jsdoc")
+const swaggerUi = require("swagger-ui-express")
+
+module.exports = app => {
   // Extended: https://swagger.io/specification/#infoObject
   const swaggerOptions = {
     swaggerDefinition: {
@@ -31,43 +33,47 @@ module.exports = (app) => {
     },
     // ['.routes/*.js']
     apis: ["./router/*.js", "./controllers/*.js"],
-  };
+  }
 
-  const swaggerDocs = swaggerJsDoc(swaggerOptions);
-  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-};
+  const swaggerDocs = swaggerJsDoc(swaggerOptions)
+  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+}
+```
 
-$$$$$|yaml|swagger jsdocs tag
-   /**
-   * @swagger
-   * /customers:
-   *  get:
-   *    description: Use to request all customers
-   *    responses:
-   *      '200':
-   *        description: A successful response
-   */
-  app.get("/customers", (req, res) => {
-    res.status(200).send("Customer results");
-  });
-  /**
-   * @swagger
-   * /customers:
-   *    put:
-   *      description: Use to return all customers
-   *    parameters:
-   *      - name: customer
-   *        in: query
-   *        description: Name of our customer
-   *        required: false
-   *        schema:
-   *          type: string
-   *          format: string
-   *    responses:
-   *      '201':
-   *        description: Successfully created user
-   */
-  app.put("/customer", (req, res) => {
-    res.status(200).send("Successfully updated customer");
-  });
-$$
+|yaml|swagger jsdocs tag
+node문서 내에 api function위에 documentation을 직접한후 compile시 문서화할 수 있어 편리하다.
+
+```js
+/**
+ * @swagger
+ * /customers:
+ *  get:
+ *    description: Use to request all customers
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+app.get("/customers", (req, res) => {
+  res.status(200).send("Customer results")
+})
+/**
+ * @swagger
+ * /customers:
+ *    put:
+ *      description: Use to return all customers
+ *    parameters:
+ *      - name: customer
+ *        in: query
+ *        description: Name of our customer
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: string
+ *    responses:
+ *      '201':
+ *        description: Successfully created user
+ */
+app.put("/customer", (req, res) => {
+  res.status(200).send("Successfully updated customer")
+})
+```

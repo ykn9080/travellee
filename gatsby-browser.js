@@ -1,8 +1,11 @@
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
+import { ThemeProvider } from "theme-ui"
 import Highlight, { defaultProps } from "prism-react-renderer"
+import theme from "prism-react-renderer/themes/vsDark"
 import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
 /* eslint-disable */
+
 const component = {
   pre: props => {
     const className = props.children.props.className || ""
@@ -14,11 +17,21 @@ const component = {
         language={
           matches && matches.groups && matches.groups.lang
             ? matches.groups.lang
-            : ""
+            : "js"
         }
+        theme={theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={style}>
+          <pre
+            className={className}
+            style={{
+              ...style,
+              padding: "20px",
+              lineHeight: 1.4,
+              fontFamily: "sudo",
+              fontSize: 14,
+            }}
+          >
             {tokens.map((line, i) => (
               <div {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
@@ -33,5 +46,12 @@ const component = {
   },
 }
 export const wrapRootElement = ({ element }) => {
-  return <MDXProvider components={component}>{element}</MDXProvider>
+  const theme1 = {
+    main: "mediumseagreen",
+  }
+  return (
+    <ThemeProvider theme={theme1}>
+      <MDXProvider components={component}>{element}</MDXProvider>
+    </ThemeProvider>
+  )
 }

@@ -10,8 +10,9 @@ demo: http://imcmaster.iptime.org:9010
 excerpt: s3 compatible storage solution. Custom install with docker-compose
 ---
 
-$$
 |bash|Backup docker volume and push to minIO|도커볼륨의 백업을 압축후(tar.bz2 포맷) minIO로 업로드하는 script
+
+```bash
 #!/bin/bash
 
 array=(mysql-data,postgres-data,wp-content, mongodbdata ,minio-data)
@@ -25,8 +26,11 @@ do
     docker run --rm -v $item:/volume -v /tmp:/backup alpine tar -cjf /backup/$item.tar.bz2 -C /volume ./
     s3cmd -c ~/.s3cfg_minio put /tmp/$item.tar.bz2 s3://backup
 done
+```
 
-$$$$$|bash|Restore code|Get from minIO  and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후 도커볼륨으로 save하는 script
+|bash|Restore code|Get from minIO and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후 도커볼륨으로 save하는 script
+
+```bash
 #!/bin/bash
 array=(mysql-data postgres-data mongodbdata wp-content minio-data)
 
@@ -55,4 +59,4 @@ do
         printf "   %s\n" $item
         fi
 done
-$$
+```

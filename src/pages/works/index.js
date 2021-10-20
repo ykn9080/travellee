@@ -3,8 +3,8 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
-
+// import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+import Breadcrumb from "../../components/BreadCrumb"
 import Img from "gatsby-image"
 import { wordCut } from "../../utility"
 
@@ -23,13 +23,15 @@ const WorkList = ({ data, location }) => {
       <div className="bodycontent">
         {works.map(work => {
           return (
-            <div>
+            <div className="ImgContainer ImgLarge">
               <Link to={`/works/${work.frontmatter.slug}`} key={work.title}>
-                <h5>{work.frontmatter.title}</h5>
-                <Img
-                  className="Img1"
-                  fluid={work.frontmatter.thumb.childImageSharp.fluid}
-                />
+                <h4>{work.frontmatter.title}</h4>
+                <div className="Img2div">
+                  <Img
+                    className="Img1"
+                    fluid={work.frontmatter.thumb.childImageSharp.fluid}
+                  />
+                </div>
                 <p title={work.frontmatter.excerpt}>
                   {wordCut(work.frontmatter.excerpt, 80, "", "...")}
                 </p>

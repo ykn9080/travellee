@@ -4,7 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import Img from "gatsby-image"
-import * as styles from "../css/workdetail.module.css"
+// import * as styles from "../css/workdetail.module.css"
 
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 import { Button, Spin } from "antd"
@@ -74,20 +74,25 @@ const WorkDetail = ({ data, location }) => {
       <Layout>
         <SEO title={title} />
         <Breadcrumb location={location} crumbLabel={slug} />
-        <main className={styles.work}>
+        <main className="work workdetail">
           <section>
             <h2>{title}</h2>
             <div>{excerpt}</div>
-            <Img fluid={featureImage.childImageSharp.fluid} />
+            <div className="Img2div">
+              <Img
+                className="Img2"
+                fluid={featureImage.childImageSharp.fluid}
+              />
+            </div>
             <MDXRenderer>{data.mdx.body}</MDXRenderer>
             <div id="showyoutube">
               <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
             </div>
           </section>
           <section>
-            <div className={styles.toc}>
+            <div className="toc">
               <h6>github</h6>
-              <div className={styles.content}>
+              <div className="content">
                 <a
                   href={github}
                   target="popup"
@@ -99,7 +104,7 @@ const WorkDetail = ({ data, location }) => {
                 </a>
               </div>
               <h6>npm</h6>
-              <div className={styles.content}>
+              <div className="content">
                 <a
                   href={npmorg}
                   target="popup"
@@ -111,11 +116,11 @@ const WorkDetail = ({ data, location }) => {
                 </a>
               </div>
               <h6>demo</h6>
-              <div className={styles.content}>
+              <div className="content">
                 <a onClick={() => handleClickOpen(demo)}>{demo}</a>
               </div>
               <h6>youtube</h6>
-              <div className={styles.content}>
+              <div className="content">
                 <a href="#showyoutube">{videoTitle}</a>
               </div>
             </div>
