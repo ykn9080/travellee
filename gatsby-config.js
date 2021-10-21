@@ -49,7 +49,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Yeseva One`, `Noto+Sans+KR\:100,300,400,500,700,900`],
+        fonts: [
+          `Yeseva One`,
+          `Montserrat`,
+          `Inconsolata`,
+          `monospace`,
+          `Maven Pro`,
+          `Noto+Sans+KR\:100,300,400,500,700,900`,
+        ],
         display: "swap",
       },
     },
@@ -83,22 +90,13 @@ module.exports = {
         preset: "@theme-ui/preset-funk",
       },
     },
-    {
-      resolve: `gatsby-plugin-breadcrumb`,
-      options: {
-        // defaultCrumb: optional To create a default crumb
-        // see Click Tracking default crumb example below
-        defaultCrumb: {
-          location: {
-            pathname: "/",
-          },
-          crumbLabel: "Home",
-          crumbSeparator: " / ",
-        },
-        // usePathPrefix: optional, if you are using pathPrefix above
-        usePathPrefix: "/blog",
-      },
-    },
+    // {
+    //   resolve: "gatsby-source-gh-readme",
+    //   options: {
+    //     gitHubToken: "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",
+    //   },
+    // },
+
     // {
     //   resolve: `gatsby-source-contentful`,
     //   options: {

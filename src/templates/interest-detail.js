@@ -4,12 +4,8 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import Img from "gatsby-image"
-// import * as styles from "../css/workdetail.module.css"
-
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+import Breadcrumb from "../components/BreadCrumb"
 import { Button, Spin } from "antd"
-import Code from "../components/Code"
-// import TagWork from "../components/TagWork"
 import { makeStyles } from "@material-ui/core/styles"
 import Dialog from "@material-ui/core/Dialog"
 import AppBar from "@material-ui/core/AppBar"
@@ -74,7 +70,7 @@ const InterestDetail = ({ data, location }) => {
     <>
       <Layout>
         <SEO title={title} />
-        <Breadcrumb location={location} crumbLabel={slug} />
+        <Breadcrumb location={location} />
         <main className="work workdetail">
           <section>
             <h2>{title}</h2>

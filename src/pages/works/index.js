@@ -1,9 +1,7 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-
 import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
-// import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 import Breadcrumb from "../../components/BreadCrumb"
 import Img from "gatsby-image"
 import { wordCut } from "../../utility"
@@ -15,7 +13,7 @@ const WorkList = ({ data, location }) => {
   return (
     <Layout>
       <Seo title="Work List" />
-      <Breadcrumb location={location} crumbLabel="Work" />
+      <Breadcrumb location={location} />
       <div className="headtitle">
         <h3>Work List</h3>
         <p>Project & Modules I've created</p>

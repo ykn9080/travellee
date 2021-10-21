@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { FiAlignJustify } from "react-icons/fi"
 import { FaMoon, FaSun } from "react-icons/fa"
-import logo from "../images/clogo.png"
-import { StaticImage } from "gatsby-plugin-image"
+import { useColorMode } from "theme-ui"
 
 const Navbar = () => {
+  const [colorMode, setColorMode] = useColorMode()
   const [show, setShow] = useState(false)
   const [theme, setTheme] = useState("moon")
   const themeChange = () => {
     document.body.classList.toggle("dark-theme")
+    setColorMode(colorMode === "default" ? "dark" : "default")
     if (theme === "moon") {
       setTheme("sun")
     } else {
@@ -18,7 +19,11 @@ const Navbar = () => {
   }
   useEffect(() => {
     const ctheme = document.body.classList.contains("dark-theme")
-    if (ctheme) setTheme("sun")
+    setColorMode(colorMode === "default" ? "dark" : "default")
+    if (ctheme) {
+      setTheme("sun")
+      setColorMode("dark")
+    }
   }, [])
   return (
     <>

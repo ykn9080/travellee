@@ -1,5 +1,5 @@
 {
-  "name": "youngkinam'shomepagemadeofgatsby",
+  "name": "youngkinam's_homepage_madeof_gatsby",
   "private": true,
   "description": "show youngki's works and interests thru demo,github,npmorg.",
   "version": "0.1.0",
@@ -13,7 +13,6 @@
     "dotenv": "^10.0.0",
     "gatsby": "^3.13.1",
     "gatsby-image": "^3.11.0",
-    "gatsby-plugin-breadcrumb": "^12.1.1",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-manifest": "^3.13.0",
@@ -26,6 +25,7 @@
     "gatsby-remark-embed-video": "^3.1.1",
     "gatsby-remark-images": "^5.11.0",
     "gatsby-source-filesystem": "^3.13.0",
+    "gatsby-source-gh-readme": "^1.0.10",
     "gatsby-transformer-sharp": "^3.13.0",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.2.1",

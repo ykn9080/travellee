@@ -6,7 +6,9 @@ import SEO from "../components/SEO"
 import Img from "gatsby-image"
 // import * as styles from "../css/workdetail.module.css"
 
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+// import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+
+import Breadcrumb from "../components/BreadCrumb"
 import { Button, Spin } from "antd"
 import Code from "../components/Code"
 // import TagWork from "../components/TagWork"
@@ -73,7 +75,7 @@ const WorkDetail = ({ data, location }) => {
     <>
       <Layout>
         <SEO title={title} />
-        <Breadcrumb location={location} crumbLabel={slug} />
+        <Breadcrumb location={location} />
         <main className="work workdetail">
           <section>
             <h2>{title}</h2>

@@ -1,16 +1,17 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
 import SEO from "../components/SEO"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import Img from "gatsby-image"
 import { Button } from "antd"
 import { FaSearchPlus } from "react-icons/fa"
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+import { wordCut } from "../utility"
 
-export default function Home({ location }) {
+export default function Home({ data }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -21,11 +22,20 @@ export default function Home({ location }) {
     autoplaySpeed: 4000,
     pauseOnHover: true,
   }
+  const works = data.allMdx.nodes
 
+  const slickList = [
+    {
+      title: "Dashboard",
+      content:
+        " Chart, Table, 이미지 등을 자유롭게 배치할 수 있다. 주제별로 여러개의 Dashboard를 만들수 있다.",
+      img: "dashboard_view.png",
+      link: "/works/dashboard",
+    },
+  ]
   return (
     <Layout>
       <SEO title="Home " />
-      <Breadcrumb location={location} crumbLabel="Home" />
       <header className="hero">
         <StaticImage
           src="../images/yknam1.jpg"
@@ -86,7 +96,36 @@ export default function Home({ location }) {
           </article>
           <div className="slidercontainer">
             <Slider {...settings}>
-              <div className="gridtwo">
+              {works.map(wk => {
+                const work = wk.frontmatter
+                return (
+                  <>
+                    <h4>{work.title}</h4>
+                    <div className="gridtwo">
+                      <article>
+                        <div className="gridtwo30">
+                          <p>{wordCut(work.excerpt, 40, "", "...")}</p>
+                        </div>
+                      </article>
+                      <Link to={`/works/${work.slug}`} key={work.title}>
+                        <Img
+                          style={{
+                            margin: "1rem",
+                            maxHeight: "calc(70vh - 4rem)",
+                          }}
+                          imgStyle={{ objectFit: "contain" }}
+                          fluid={work.thumb.childImageSharp.fluid}
+                        />
+                        <div style={{ textAlign: "right", marginTop: 10 }}>
+                          <Button>View Detail </Button>
+                        </div>
+                      </Link>
+                    </div>
+                  </>
+                )
+              })}
+
+              {/* <div className="gridtwo">
                 <article>
                   <h4>Dashboard</h4>
                   <div className="gridtwo30">
@@ -97,13 +136,15 @@ export default function Home({ location }) {
                   </div>
                 </article>
                 <div>
-                  <StaticImage
-                    src="../images/work/dashboard_view.png"
-                    alt="project image"
-                    placeholder="tracedSVG"
-                  ></StaticImage>
+                  <Link key="11" to={`/works/dashboard`}>
+                    <StaticImage
+                      src="../images/work/dashboard_view.png"
+                      alt="project image"
+                      placeholder="tracedSVG"
+                    ></StaticImage>
+                  </Link>
                   <div style={{ textAlign: "right", marginTop: 10 }}>
-                    <Link key="1" to={`/link`}>
+                    <Link key="1" to={`/works/dashboard`}>
                       <Button>View Detail </Button>
                     </Link>
                   </div>
@@ -148,7 +189,7 @@ export default function Home({ location }) {
                   placeholder="tracedSVG"
                   layout="fullWidth"
                 ></StaticImage>
-              </div>
+              </div> */}
             </Slider>
           </div>
         </section>
@@ -156,3 +197,25 @@ export default function Home({ location }) {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query MySlick {
+    allMdx(filter: { frontmatter: { type: { eq: "work" } } }) {
+      nodes {
+        frontmatter {
+          title
+          seq
+          slug
+          excerpt
+          thumb {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

@@ -45,6 +45,8 @@
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
+  --blue-dark: #4b7bec;
+  --blue-hover: #3867d6;
   /* box shadows */
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -55,8 +57,8 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   /* typography */
   --defaultFontSize: 87.5%;
-  --headingFont: "Noto Sans KR", "Inconsolata", monospace;
-  --bodyFont: "Maven Pro", "Noto Sans KR", "Montserrat", sans-serif;
+  --headingFont: "Noto Sans KR", "Maven Pro", "Inconsolata", monospace;
+  --bodyFont: "Maven Pro", "Noto Sans KR", sans-serif;
   --smallText: 0.8em;
   --extraSmallText: 0.7em;
   /* rest */
@@ -64,6 +66,9 @@
   --navbarColor: var(--green-dark);
   --textColor: var(--grey-1000);
   --navtextColor: var(--grey-0);
+  --breadseperator: var(--grey-1000);
+  --breadanchor: var(--bluedark);
+  --breadhover: var(--bluehover);
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
@@ -114,6 +119,7 @@ h5 {
   line-height: 1.3;
   text-transform: capitalize;
   letter-spacing: var(--letterSpacing);
+  color: var(--textColor);
 }
 
 h1 {
@@ -136,6 +142,21 @@ h5 {
   font-size: 1.25rem;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5.thick {
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5.thicker {
+  font-weight: 900;
+}
 small,
 .text-small {
   font-size: var(--smallText);
@@ -345,10 +366,13 @@ form > *:last-child {
 section {
   margin-bottom: 30px;
 }
-
+p {
+  color: var(--textColor);
+}
 blockquote {
   border-left: 0.4em solid #039be5;
-  background: #f9f9f9;
+  /* background: #f9f9f9; */
+  color: var(--textColor);
   margin: 0.5em 10px;
   padding: 0.5em 10px;
 }
@@ -475,6 +499,44 @@ blockquote cite:before {
     align-items: center;
     margin-right: 0;
   }
+}
+/*#########*/
+/* Footer */
+/*#########*/
+
+.breadcrumbs {
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--textColor);
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  display: flex;
+  background-color: var(--backgroundColor);
+  justify-content: start;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumbs li {
+  margin: 2px;
+}
+
+.breadcrumbs li a {
+  color: var(--breadanchor);
+  text-decoration: none;
+}
+.breadcrumbs li a:hover {
+  transition-delay: 50ms;
+  transition: 50ms;
+  color: var(--breadhover);
+  text-decoration: underline;
+}
+
+.breadcrumbs li + li:before {
+  color: var(--breadseperator);
+  content: "/\00a0";
 }
 
 /*#########*/
@@ -681,7 +743,6 @@ blockquote cite:before {
 .hero {
   height: 40vh;
   position: relative;
-  margin-top: -40px;
   margin-bottom: 2rem;
 }
 .hero-container {
@@ -754,8 +815,8 @@ blockquote cite:before {
 
 .gridtwo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 20px;
 }
 .gridtwoone {
   display: grid;
@@ -769,7 +830,8 @@ blockquote cite:before {
 
 .work {
   display: grid;
-  background-color: white;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   justify-content: center;
   max-width: 1200px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -779,6 +841,7 @@ blockquote cite:before {
 .workdetail {
   grid-template-columns: 3fr 1fr;
 }
+
 .work h3 {
   margin: 20px auto 0px;
   font-weight: 500;
@@ -791,20 +854,6 @@ blockquote cite:before {
   text-align: center;
 }
 
-nav.breadcrumb {
-  font-size: 0.9rem;
-  color: var(--textColor);
-  padding: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-
-  display: grid;
-  background-color: var(--backgroundColor);
-  justify-content: center;
-  grid-template-columns: 1fr;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .headtitle {
   display: grid;
   background-color: var(--backgroundColor);
@@ -812,7 +861,6 @@ nav.breadcrumb {
   grid-template-columns: 1fr;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: "Work Sans", sans-serif;
   color: var(--textColor);
 }
 .bodycontent {
@@ -824,18 +872,6 @@ nav.breadcrumb {
   grid-gap: 20px;
   margin: 0 auto;
   margin-bottom: 50px;
-  color: var(--textColor);
-}
-.bodycontent h4,
-h5 {
-  margin: 20px auto 0px;
-  font-weight: 500;
-  color: var(--textColor);
-}
-.bodycontent p {
-  font-weight: 100;
-  padding: 5px;
-  color: var(--textColor);
 }
 
 .toc {
@@ -890,6 +926,25 @@ h5 {
   padding: 15px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+.ImgContainer h4,
+h5 {
+  margin: 20px auto 0px;
+  color: var(--textColor);
+  font-weight: 500;
+}
+
+.ImgContainer p {
+  font-weight: 100;
+  color: var(--textColor);
+  padding: 5px;
+}
+
+.ImgContainer:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  border-width: 0.1em;
+}
+
 .ImgLarge {
   height: 350px;
 }
@@ -903,6 +958,11 @@ h5 {
   margin-top: 20px;
   max-width: 100%;
   max-height: 100%;
+  display: block;
+}
+.Img3 {
+  max-height: 400px;
+  max-width: 100%;
   display: block;
 }
 .Imgdetail {
@@ -933,4 +993,7 @@ h5 {
   --navbarColor: var(--green-light);
   --navtextColor: var(--grey-1000);
   --textColor: var(--grey-0);
+  --breadseperator: var(--grey-0);
+  --breadanchor: var(--grey-0);
+  --breadhover: var(--yellow);
 }

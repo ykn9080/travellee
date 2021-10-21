@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
+import Breadcrumb from "../components/BreadCrumb"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
@@ -12,9 +12,9 @@ const InterestList = ({ data, location }) => {
   return (
     <Layout>
       <Seo title="Interest List" />
-      <Breadcrumb location={location} crumbLabel="Interest" />
+      <Breadcrumb location={location} />
       <div className="headtitle">
-        <h3>Interest List</h3>
+        <h3 style={{ fontWeight: 900 }}>Interest List</h3>
         <p>What I am usually using or interested</p>
       </div>
       <div className="bodycontent">

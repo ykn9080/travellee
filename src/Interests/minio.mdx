@@ -10,7 +10,8 @@ demo: http://imcmaster.iptime.org:9010
 excerpt: s3 compatible storage solution. Custom install with docker-compose
 ---
 
-|bash|Backup docker volume and push to minIO|도커볼륨의 백업을 압축후(tar.bz2 포맷) minIO로 업로드하는 script
+|bash|Backup docker volume and push to minIO|도커볼륨의 백업을 압축후(tar.bz2 포맷) minIO로
+업로드하는 script
 
 ```bash
 #!/bin/bash
@@ -28,7 +29,8 @@ do
 done
 ```
 
-|bash|Restore code|Get from minIO and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후 도커볼륨으로 save하는 script
+|bash|Restore code|Get from minIO and restore, minIO backup bucker의 tar.bz2 파일을 다운받은 후
+도커볼륨으로 save하는 script
 
 ```bash
 #!/bin/bash
@@ -54,7 +56,8 @@ do
         if [ $exist == 0 ]
         then
         docker volume create $item
-        docker run --rm -v $item:/volume -v /tmp:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/$item.tar.bz2"
+        docker run --rm -v $item:/volume -v /tmp:/backup alpine sh -c
+        "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/$item.tar.bz2"
 
         printf "   %s\n" $item
         fi

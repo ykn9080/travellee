@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import CodeBlock from "./src/components/CodeBlock"
 import theme from "prism-react-renderer/themes/vsDark"
-import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
+
 /* eslint-disable */
 const component = {
   code: CodeBlock,

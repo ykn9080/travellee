@@ -1,25 +1,35 @@
 import React from "react"
 import { Link } from "gatsby"
-import { Breadcrumb } from "antd"
 
-const BreadCrumb = props => {
-  console.log(props.pathname)
-  const pathlist = props?.pathname?.split("/") || []
-  let pathadd = "/"
+const BreadCrumb = ({ location }) => {
+  const pathlist = location?.pathname?.split("/") || []
+  const lastindx = pathlist.length - 1
+
+  if (pathlist[lastindx] === "") pathlist.splice(lastindx, 1)
+  let pathadd = "",
+    linkadd = ""
   return (
-    <Breadcrumb>
-      <Breadcrumb.Item>Home</Breadcrumb.Item>
+    <ul className="breadcrumbs">
       {pathlist.map((k, i) => {
-        pathadd = `${pathadd}/${k}`
-        return (
-          <Breadcrumb.Item>
-            <Link to={pathadd} key={k}>
-              {k}
+        if (k === "") {
+          pathadd = "Home"
+          linkadd = "/"
+        } else {
+          pathadd = `${k}`
+          linkadd = `${linkadd}${k}/`
+        }
+
+        return i === pathlist.length - 1 ? (
+          <li>{pathadd}</li>
+        ) : (
+          <li>
+            <Link to={linkadd} key={k}>
+              {pathadd}
             </Link>
-          </Breadcrumb.Item>
+          </li>
         )
       })}
-    </Breadcrumb>
+    </ul>
   )
 }
 

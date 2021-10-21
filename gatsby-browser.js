@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { ThemeProvider } from "theme-ui"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/vsDark"
-import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
+
 /* eslint-disable */
 
 const component = {
