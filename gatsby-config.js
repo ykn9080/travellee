@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
     logo: `${__dirname}/src/images/yknam1.jpg`,
   },
+  pathPrefix: "/gatsbymyhome",
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
@@ -90,12 +91,6 @@ module.exports = {
         preset: "@theme-ui/preset-funk",
       },
     },
-    // {
-    //   resolve: "gatsby-source-gh-readme",
-    //   options: {
-    //     gitHubToken: "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",
-    //   },
-    // },
 
     // {
     //   resolve: `gatsby-source-contentful`,

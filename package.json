@@ -25,7 +25,6 @@
     "gatsby-remark-embed-video": "^3.1.1",
     "gatsby-remark-images": "^5.11.0",
     "gatsby-source-filesystem": "^3.13.0",
-    "gatsby-source-gh-readme": "^1.0.10",
     "gatsby-transformer-sharp": "^3.13.0",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.2.1",
@@ -41,6 +40,7 @@
     "theme-ui": "^0.11.3"
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "prettier": "2.4.1"
   },
   "keywords": [
@@ -51,6 +51,7 @@
   ],
   "license": "0BSD",
   "scripts": {
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
