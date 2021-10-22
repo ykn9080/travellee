@@ -21,7 +21,12 @@ const SEO = ({ title, description }) => {
       htmlAttributes={{ lang: "en" }}
       title={`${title} | ${site.siteMetadata.title}`}
       meta={[{ name: `description`, content: metaDescription }]}
-    ></Helmet>
+    >
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      />
+    </Helmet>
   )
 }
 
