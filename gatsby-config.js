@@ -6,7 +6,7 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
     logo: `${__dirname}/src/images/yknam1.jpg`,
   },
-  pathPrefix: "",
+  pathPrefix: "gatsbymyhome",
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
