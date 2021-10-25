@@ -3,9 +3,11 @@ import { MDXProvider } from "@mdx-js/react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import CodeBlock from "./src/components/CodeBlock"
 import theme from "prism-react-renderer/themes/vsDark"
+import { MdxLink } from "gatsby-theme-i18n"
 
 /* eslint-disable */
 const component = {
+  a: MdxLink,
   code: CodeBlock,
   pre: props => {
     const className = props.children.props.className || ""

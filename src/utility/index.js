@@ -45,6 +45,7 @@ let strpos = function (haystack, needle, offset) {
 
 export function wordCut(value, length, preserve = "", separator = "") {
   let breakpoint = false
+  if (!value) return ""
   if (value.length > length) {
     if (preserve) {
       if (false !== (breakpoint = strpos(value, " ", length))) {
@@ -63,4 +64,14 @@ export function wordCut(value, length, preserve = "", separator = "") {
   }
 
   return value
+}
+
+export const pathSplit = pathname => {
+  if (!pathname) return ""
+  return pathname.split("/")
+}
+
+export const findLocale = pathname => {
+  if (pathname != "" && pathSplit(pathname)[1] === "en") return "en"
+  else return "kr"
 }

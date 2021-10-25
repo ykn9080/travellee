@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography"
 import Slide from "@material-ui/core/Slide"
 import { AiOutlineClose } from "react-icons/ai"
 import Video from "../components/Video"
-
+import { wordCut } from "../utility"
 const useStyles = makeStyles(theme => ({
   appBar: {
     position: "relative",
@@ -31,7 +31,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 const InterestDetail = ({ data, location }) => {
-  console.log(location)
   const classes = useStyles()
   const {
     title,
@@ -49,23 +48,20 @@ const InterestDetail = ({ data, location }) => {
   const [path, setPath] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  function wcut(origin) {
+    return wordCut(origin, 40, "", "...")
+  }
   const handleClickOpen = url => {
     if (!url) return
     setOpen(true)
     setLoading(true)
     setPath(url)
   }
-  var newwindow
-  function poptastic(url, name) {
-    newwindow = window.open(url, name, "height=800,width=1200")
-    if (window.focus) {
-      newwindow.focus()
-    }
-  }
+
   const handleClose = () => {
     setOpen(false)
   }
-  console.log(location)
+
   return (
     <>
       <Layout>
@@ -92,31 +88,21 @@ const InterestDetail = ({ data, location }) => {
             <div className="toc">
               <h6>github</h6>
               <div className="content">
-                <a
-                  href={github}
-                  target="popup"
-                  onClick={() => {
-                    poptastic(github, "github")
-                  }}
-                >
-                  {github}
+                <a href={github} target="showsite" title={github}>
+                  {wcut(github)}
                 </a>
               </div>
               <h6>npm</h6>
               <div className="content">
-                <a
-                  href={npmorg}
-                  target="popup"
-                  onClick={() => {
-                    poptastic(npmorg, "npmorg")
-                  }}
-                >
-                  {npmorg}
+                <a href={npmorg} target="showsite" title={npmorg}>
+                  {wcut(npmorg)}
                 </a>
               </div>
               <h6>demo</h6>
               <div className="content">
-                <a onClick={() => handleClickOpen(demo)}>{demo}</a>
+                <a href={demo} target="showsite" title={demo}>
+                  {wcut(demo)}
+                </a>
               </div>
               <h6>youtube</h6>
               <div className="content">

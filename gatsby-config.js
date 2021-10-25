@@ -21,14 +21,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `works`,
-        path: `${__dirname}/src/works`,
+        path: `${__dirname}/src/works/`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `interests`,
-        path: `${__dirname}/src/interests`,
+        path: `${__dirname}/src/interests/`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -67,7 +67,9 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         mediaTypes: [`text/markdown`, `text/x-markdown`],
-
+        defaultLayouts: {
+          default: require.resolve(`./src/components/Layout.js`),
+        },
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -91,7 +93,19 @@ module.exports = {
         preset: "@theme-ui/preset-funk",
       },
     },
-
+    {
+      resolve: `gatsby-theme-i18n`,
+      options: {
+        defaultLang: `kr`,
+        configPath: require.resolve(`./i18n/config.json`),
+      },
+    },
+    {
+      resolve: `gatsby-theme-i18n-react-intl`,
+      options: {
+        defaultLocale: `./i18n/react-intl/kr.json`,
+      },
+    },
     // {
     //   resolve: `gatsby-source-contentful`,
     //   options: {

@@ -1,28 +1,39 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
 import Breadcrumb from "../../components/BreadCrumb"
 import Img from "gatsby-image"
-import { wordCut } from "../../utility"
+import { wordCut, findLocale } from "../../utility"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
+import { useIntl } from "react-intl"
 
 const WorkList = ({ data, location }) => {
-  console.log(data)
-  const works = data.allMdx.nodes
-
+  const intl = useIntl()
+  const works = data.allFile.nodes
+  const list = works.map(({ childMdx: work }) => {
+    return { title: work.frontmatter.title, slug: work.frontmatter.slug }
+  })
+  console.log(data, findLocale(location.pathname))
   return (
     <Layout>
       <Seo title="Work List" />
       <Breadcrumb location={location} />
       <div className="headtitle">
         <h3>Work List</h3>
-        <p>Project & Modules I've created</p>
+        <p> {intl.formatMessage({ id: "work-sub" })}</p>
       </div>
       <div className="bodycontent">
-        {works.map(work => {
+        {works.map(({ childMdx: work }) => {
+          // let locale = ""
+          // if (work.fields.locale) locale = `/${work.fields.locale}`
           return (
             <div className="ImgContainer ImgLarge">
-              <Link to={`/works/${work.frontmatter.slug}`} key={work.title}>
+              <Link
+                to={`/works/${work.frontmatter.slug}`}
+                key={work.title}
+                state={{ list: list }}
+              >
                 <h4>{work.frontmatter.title}</h4>
                 <div className="Img2div">
                   <Img
@@ -42,30 +53,37 @@ const WorkList = ({ data, location }) => {
   )
 }
 export const query = graphql`
-  query MyWork {
-    allMdx(filter: { frontmatter: { type: { eq: "work" } } }) {
+  query hello($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "works" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
       nodes {
-        frontmatter {
-          title
-          demo
-          videoTitle
-          videoSourceURL
-          thumb {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
+        childMdx {
+          frontmatter {
+            title
+            demo
+            videoTitle
+            videoSourceURL
+            thumb {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
+            slug
+            seq
+            npmorg
+            github
+            excerpt
           }
-          slug
-          seq
-          npmorg
-          github
-          excerpt
         }
-        body
       }
     }
   }
 `
+
 export default WorkList

@@ -14,29 +14,58 @@ const path = require("path")
 //     },
 //   })
 // }
-exports.createPages = async ({ graphql, actions }) => {
-  const { data } = await graphql(`
-    query Articles {
-      allMdx {
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+  const template = require.resolve(`./src/templates/work-detail.js`)
+  const result = await graphql(`
+    {
+      contents: allFile(
+        filter: { sourceInstanceName: { in: ["works", "interests"] } }
+      ) {
         nodes {
-          frontmatter {
-            type
-            slug
+          childMdx {
+            frontmatter {
+              slug
+              type
+            }
           }
         }
       }
     }
   `)
+  if (result.errors) {
+    reporter.panicOnBuild(result.errors)
+    return
+  }
 
-  data.allMdx.nodes.forEach(node => {
-    actions.createPage({
-      path: `/${node.frontmatter.type}s/${node.frontmatter.slug}`,
-      component: path.resolve(
-        `./src/templates/${node.frontmatter.type}-detail.js`
-      ),
-      context: { slug: node.frontmatter.slug },
+  const contentList = result.data.contents.nodes
+  console.log(contentList)
+  contentList.forEach(({ childMdx: node }) => {
+    console.log(node.frontmatter.slug)
+    return createPage({
+      path: `${node.frontmatter.type}s/${node.frontmatter.slug}`,
+      component: template,
+      context: {
+        slug: node.frontmatter.slug,
+      },
     })
   })
+
+  // data.allMdx.nodes.forEach(node => {
+  //   console.log(node, node.fields.locale)
+  //   let locale = ""
+  //   if (node.fields.locale) locale = "/en"
+  //   return actions.createPage({
+  //     path: `${locale}/${node.frontmatter.type}s/${node.frontmatter.slug}`,
+  //     component: path.resolve(
+  //       `./src/templates/work-detail.js`
+  //       // `./src/templates/${node.frontmatter.type}-detail.js`
+  //     ),
+  //     context: {
+  //       slug: node.slug,
+  //     },
+  //   })
+  // })
 }
 
 // exports.createPages = async ({ graphql, actions }) => {

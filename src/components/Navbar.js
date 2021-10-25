@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+
 import { FiAlignJustify } from "react-icons/fi"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { useColorMode } from "theme-ui"
+import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
 
 const Navbar = () => {
   const [colorMode, setColorMode] = useColorMode()

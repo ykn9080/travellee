@@ -5,10 +5,15 @@ import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
 import { wordCut } from "../utility"
+import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
+import { useIntl } from "react-intl"
 
 const InterestList = ({ data, location }) => {
+  const intl = useIntl()
   const interests = data.allMdx.nodes
-
+  const list = interests.map(work => {
+    return { title: work.frontmatter.title, slug: work.frontmatter.slug }
+  })
   return (
     <Layout>
       <Seo title="Interest List" />
@@ -24,6 +29,7 @@ const InterestList = ({ data, location }) => {
               <Link
                 to={`/interests/${interest.frontmatter.slug}`}
                 key={interest.title}
+                state={{ list: list }}
               >
                 <div className="Img2div">
                   <Img

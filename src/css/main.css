@@ -1,4 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css?family=Montserrat:400|Inconsolata:400"); */
+
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Montserrat:400|Inconsolata:400");
 *,
 ::after,
 ::before {
@@ -77,10 +79,6 @@
 }
 html {
   font-size: var(--defaultFontSize);
-}
-@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
-body {
-  font-family: "Maven Pro", sans-serif;
 }
 
 @media only screen and (min-width: 576px) {
@@ -873,21 +871,62 @@ blockquote cite:before {
   margin: 0 auto;
   margin-bottom: 50px;
 }
+.sideList {
+  list-style: none;
+  color: var(--textColor);
+  background-color: var(--backgroundColor);
+  margin: 20px 0;
+  font-size: 1em;
+}
+.sideList h6 {
+  display: block;
+  font-size: 1em;
+
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.sideList ul {
+  list-style: none;
+  margin: 0;
+}
+.sideList li {
+  margin-left: -30px;
+  font-size: 0.9em;
+}
+.sideList li:before {
+  content: "-";
+  margin-right: 10px;
+}
+
+.sideList li a {
+  color: var(--breadanchor);
+  text-decoration: none;
+}
+.sideList li a:active {
+  background-color: yellow;
+  font-weight: bold;
+  text-decoration: none;
+}
+.sideList .selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.sideList li a:hover {
+  transition-delay: 50ms;
+  transition: 50ms;
+  color: var(--breadhover);
+  text-decoration: underline;
+}
 
 .toc {
-  padding: 0px 30px 5px;
-  /* border-radius: 0.42857143rem;
-  border: 0.07142857rem solid #cecfd5; */
-  margin-top: 80px;
+  line-height: 1.5;
   margin-bottom: 1.71428571rem;
 }
 .toc h6 {
   display: block;
   font-size: 1em;
-  margin-block-start: 2.33em;
-  margin-block-end: 2.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
 
   color: var(--textColor);
   margin: 0;
@@ -898,7 +937,7 @@ blockquote cite:before {
 .content {
   color: var(--textColor);
   font-weight: 100;
-  font-size: 0.7em;
+  font-size: 0.8em;
   padding-left: 0.3rem;
   margin-bottom: 0.3rem;
   cursor: pointer;

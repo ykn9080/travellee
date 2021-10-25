@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
 import SEO from "../components/SEO"
@@ -10,8 +10,11 @@ import Img from "gatsby-image"
 import { Button } from "antd"
 import { FaSearchPlus } from "react-icons/fa"
 import { wordCut } from "../utility"
+import { useIntl } from "react-intl"
+import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
 
 export default function Home({ data }) {
+  const intl = useIntl()
   const settings = {
     dots: true,
     infinite: true,
@@ -55,7 +58,9 @@ export default function Home({ data }) {
         <section className="gridtwo">
           <article>
             <h3 className="animated animated-text">
-              <span className="mr-2">풀스택 웹개발자 -</span>
+              <span className="mr-2">
+                {intl.formatMessage({ id: "mypositioning" })} -
+              </span>
               <div className="animated-info">
                 <span className="animated-item">Web Mobile</span>
                 <span className="animated-item">MERN SQL</span>
