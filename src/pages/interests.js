@@ -1,11 +1,11 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Breadcrumb from "../components/BreadCrumb"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
 import { wordCut } from "../utility"
-import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
+import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
 
 const InterestList = ({ data, location }) => {
@@ -50,27 +50,34 @@ const InterestList = ({ data, location }) => {
   )
 }
 export const query = graphql`
-  query MyInterest {
-    allMdx(filter: { frontmatter: { type: { eq: "interest" } } }) {
+  query MyInterest($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "works" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
       nodes {
-        frontmatter {
-          title
-          demo
-          videoTitle
-          videoSourceURL
-          thumb {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
+        childMdx {
+          frontmatter {
+            title
+            demo
+            videoTitle
+            videoSourceURL
+            thumb {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
+            slug
+            seq
+            npmorg
+            github
+            excerpt
           }
-          slug
-          seq
-          github
-          excerpt
         }
-        body
       }
     }
   }

@@ -28,6 +28,7 @@
     "gatsby-theme-i18n": "^2.0.0",
     "gatsby-theme-i18n-react-intl": "^2.0.0",
     "gatsby-transformer-sharp": "^3.13.0",
+    "jquery": "^3.6.0",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.2.1",
     "prop-types": "^15.7.2",

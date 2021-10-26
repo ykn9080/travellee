@@ -14,7 +14,7 @@ const WorkList = ({ data, location }) => {
   const list = works.map(({ childMdx: work }) => {
     return { title: work.frontmatter.title, slug: work.frontmatter.slug }
   })
-  console.log(data, findLocale(location.pathname))
+
   return (
     <Layout>
       <Seo title="Work List" />

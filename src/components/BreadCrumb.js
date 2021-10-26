@@ -4,13 +4,14 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
 const BreadCrumb = ({ location }) => {
   const pathlist = location?.pathname?.split("/") || []
   const lastindx = pathlist.length - 1
-
+  console.log(pathlist)
   if (pathlist[lastindx] === "") pathlist.splice(lastindx, 1)
   let pathadd = "",
     linkadd = ""
   return (
     <ul className="breadcrumbs">
       {pathlist.map((k, i) => {
+        if (["ko", "en"].indexOf(k) > -1) return
         if (k === "") {
           pathadd = "Home"
           linkadd = "/"

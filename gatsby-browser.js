@@ -4,6 +4,7 @@ import { ThemeProvider } from "theme-ui"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/vsDark"
 import { MdxLink } from "gatsby-theme-i18n"
+import { getCookie } from "./src/utility"
 
 /* eslint-disable */
 
@@ -56,4 +57,19 @@ export const wrapRootElement = ({ element }) => {
       <MDXProvider components={component}>{element}</MDXProvider>
     </ThemeProvider>
   )
+}
+
+const i18nConfig = require("./i18n/config.json")
+export const onClientEntry = () => {
+  const langs = i18nConfig.map(c => c.code)
+  let userLang = navigator.language.substr(0, 2)
+
+  if (getCookie("mylanguage")) userLang = getCookie("mylanguage")
+  if (userLang === "ko") userLang = ""
+  if (
+    langs.includes(userLang) &&
+    !window.location.pathname.startsWith(`/${userLang}/`)
+  ) {
+    window.location.pathname = `/${userLang}${window.location.pathname}`
+  }
 }

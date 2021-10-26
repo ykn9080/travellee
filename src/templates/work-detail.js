@@ -36,6 +36,7 @@ import { wordCut, findLocale } from "../utility"
 
 const WorkDetail = ({ data, location }) => {
   // const classes = useStyles()
+  console.log(data)
   const {
     title,
     excerpt,
@@ -53,7 +54,7 @@ const WorkDetail = ({ data, location }) => {
   function wcut(origin) {
     return wordCut(origin, 40, "", "...")
   }
-  console.log(data)
+
   // const handleClose = () => {
   //   setOpen(false)
   // }

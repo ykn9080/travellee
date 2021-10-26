@@ -96,7 +96,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-i18n`,
       options: {
-        defaultLang: `kr`,
+        defaultLang: `ko`,
         configPath: require.resolve(`./i18n/config.json`),
       },
     },

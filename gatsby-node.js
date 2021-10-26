@@ -39,9 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const contentList = result.data.contents.nodes
-  console.log(contentList)
   contentList.forEach(({ childMdx: node }) => {
-    console.log(node.frontmatter.slug)
     return createPage({
       path: `${node.frontmatter.type}s/${node.frontmatter.slug}`,
       component: template,

@@ -484,6 +484,7 @@ blockquote cite:before {
     flex-direction: row;
     align-items: center;
     width: 100%;
+    margin-right: 20px;
   }
   .nav-link {
     padding: 0;
@@ -1035,4 +1036,26 @@ h5 {
   --breadseperator: var(--grey-0);
   --breadanchor: var(--grey-0);
   --breadhover: var(--yellow);
+}
+#dvLang {
+  position: relative;
+  float: left;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding: 5px;
+  z-index: 100;
+  text-align: left;
+}
+.flags {
+  margin-top: 15px;
+}
+.flagimg {
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 25px;
+}
+.shrink {
+  margin-left: -1px;
 }
