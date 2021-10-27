@@ -4,7 +4,7 @@ import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
 import Breadcrumb from "../../components/BreadCrumb"
 import Img from "gatsby-image"
-import { wordCut, findLocale } from "../../utility"
+import { wordCut } from "../../utility"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
 
@@ -20,7 +20,7 @@ const WorkList = ({ data, location }) => {
       <Seo title="Work List" />
       <Breadcrumb location={location} />
       <div className="headtitle">
-        <h3>Work List</h3>
+        <h3>{intl.formatMessage({ id: "work-head" })}</h3>
         <p> {intl.formatMessage({ id: "work-sub" })}</p>
       </div>
       <div className="bodycontent">

@@ -5,7 +5,7 @@ import { FiAlignJustify } from "react-icons/fi"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { useColorMode } from "theme-ui"
 import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
-import { setCookie } from "../utility"
+import { setCookie, getCookie } from "../utility"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Navbar = () => {
@@ -31,7 +31,11 @@ const Navbar = () => {
       setTheme("sun")
       setColorMode("dark")
     }
-    setLang("en")
+    let language = getCookie("mylanguage")
+    if (!language) {
+      language = navigator.language.substr(0, 2)
+    }
+    setLang(language)
     $(document).click(event => {
       if (!$(event.target).closest(".flags").length) {
         setShowLang(false)
@@ -44,13 +48,34 @@ const Navbar = () => {
     setLang(lang)
     setShowLang(false)
   }
+  const krimg = (
+    <StaticImage width={25} src="../images/isoflag/kr.png" alt="Korean" />
+  )
+  const usimg = (
+    <StaticImage width={25} src="../images/isoflag/us.png" alt="English" />
+  )
+  const krimg1 = (
+    <StaticImage
+      className="flagimg"
+      width={25}
+      src="../images/isoflag/kr.png"
+      alt="Korean"
+    />
+  )
+  const usimg1 = (
+    <StaticImage
+      className="flagimg"
+      width={25}
+      src="../images/isoflag/us.png"
+      alt="English"
+    />
+  )
   return (
     <>
       <nav className="navbar">
         <div className="nav-center">
           <div className="nav-header">
             <LocalizedLink to="/">
-              {/* <img src={logo} alt="youngki nam" /> */}
               <span
                 style={{
                   fontFamily: "Yeseva One",
@@ -65,7 +90,10 @@ const Navbar = () => {
               <FiAlignJustify />
             </button>
           </div>
-          <div className={show ? "nav-links show-links" : "nav-links"}>
+          <div
+            style={{ position: "relative" }}
+            className={show ? "nav-links show-links" : "nav-links"}
+          >
             <LocalizedLink
               to="/"
               className="nav-link"
@@ -117,76 +145,25 @@ const Navbar = () => {
                   setShowLang(!showLang)
                 }}
               >
-                {lang === "en" ? (
-                  <StaticImage
-                    width={25}
-                    src="../images/isoflag/us.png"
-                    alt="English"
-                  />
-                ) : (
-                  <StaticImage
-                    width={25}
-                    src="../images/isoflag/kr.png"
-                    alt="Korean"
-                  />
-                )}
+                {lang === "en" ? usimg : krimg}
               </div>
-              {showLang && (
-                <div id="dvLang">
-                  <Link to="/en" hrefLang="en" onClick={() => selLang("en")}>
-                    <StaticImage
-                      className="flagimg"
-                      src="../images/isoflag/us.png"
-                      alt="English"
-                    />
-                    English
-                  </Link>
-
-                  <Link to="/" hrefLang="ko" onClick={() => selLang("ko")}>
-                    <StaticImage
-                      className="flagimg"
-                      src="../images/isoflag/kr.png"
-                      alt="Korean"
-                    />
-                    한국어
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </div>
       </nav>
+      {showLang && (
+        <div id="dvLang">
+          <Link to="/en" hrefLang="en" onClick={() => selLang("en")}>
+            {usimg1}
+            <span>English</span>
+          </Link>
+          <Link to="/" hrefLang="ko" onClick={() => selLang("ko")}>
+            {krimg1}
+            <span>한국어</span>
+          </Link>
+        </div>
+      )}
     </>
-  )
-}
-const Flags = () => {
-  return (
-    <div>
-      <div className="sel1">
-        <ul>
-          <li values="1" className="opt">
-            <Link
-              to="/en"
-              hrefLang="en"
-              onClick={() => setCookie("mylanguage", "en")}
-            >
-              <StaticImage src="../images/isoflag/us.png" alt="English" />
-              English
-            </Link>
-          </li>
-          <li values="2" className="opt">
-            <Link
-              to="/"
-              hrefLang="ko"
-              onClick={() => setCookie("mylanguage", "ko")}
-            >
-              <StaticImage src="../images/isoflag/kr.png" alt="Korean" />
-              Korean
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
   )
 }
 

@@ -11,78 +11,173 @@ npmorg:
 demo: http://imcmaster.iptime.org:7000
 videoSourceURL: https://www.youtube.com/embed/Kxw2OjX0B10
 videoTitle: "Gatsby is Never Gonna Give You Up"
-excerpt: <div>chart,table,</div>  html문서등의 요소를 drag and drop으로 화면에 배치할 수 있다. 주제와 목적에 따라 복수의 dashboard를 생성하여 리스트로 관리한다. 필요에 따라 Easy chart, Easy table, html 등 다양한 모듈을 plugin으로 추가하여 사용할수있다.
+excerpt: chart,table,html문서등의 요소를 drag and drop으로 화면에 배치할 수 있다. 주제와 목적에 따라 복수의 dashboard를 생성하여 리스트로 관리한다. 필요에 따라 Easy chart, Easy table, html 등 다양한 모듈을 plugin으로 추가하여 사용할수있다.
 ---
 
-# An H1 Header
+<h1 align="center">imcDashboard 👋</h1>
 
-## Still an H2 Header
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ykn9080/imcDashboard/LICENSE)
 
-### An H3 Header
+> 대쉬보드기능을 제공하는 오픈소스. 차트,테이블,html문서 등을 drag & drop으로 배치할 수 있다. 각 오브젝트의 레이아웃과 사이즈변경을 할수 있으며. 각각의 오브젝트를 생성, 수정, 삭제할 수 있다.
+> 주제별로 여러개의 대쉬보드는 생성할 수 있고, 리스트로 관리할 수 있다.
 
-> Of all the things I've lost
-> I miss my mind the most. - Mark Twain
+<a href="http://imcmaster.iptime.org:7000">
+  <img src="https://i.ibb.co/744RYpb/imcdashboard.gif" width="800px" />
+</a>
 
-> Blockquotes can also be nested...
->
-> > ...by using additional greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
+### ✨ [Demo](http://imcmaster.iptime.org:7000)
 
-<blockquote>
-  <p>
-    One
-    <br />
-    Two
-    <br />
-    Three
-  </p>
-</blockquote>
+[English](./README.md) | 한글
 
-- Item 1
-- Item 2
-- Item 3
+## Install
 
-  _This is emphasized text!_
+```sh
+# Github
+git clone https://github.com/ykn9080/imcDashboard
+npm start //local init
+docker-compose up //using docker
 
-**This is strong text!**
+# Docker
+docker pull yknam/imcdashboard
+docker run --name imcdashboard -p 7000:80 -d yknam/imcdashboard
+```
 
-_This is emphasized text!_
+## Usage basic
 
-**This is strong text!**
+1. 신규로 dashboard를 생성하기
+2. Save
+3. Layout
+4. Edit
+   a. Chart
+   b. Table
+   c. HTML
+5. Setting
+   a. Localhost
+   샘플 파일: sampledata.json
+   b. Mongdb
+6. Multiple dashboard
 
-```js
-function test() {
-  console.log("notice the blank line before this function?")
+```javascript
+<AntFormDisplay
+  showedit={true}
+  formArray={formArray}
+  onFinish={onFinish}
+  onValuesChange={onValuesChange}
+/>
+```
+
+## EventHandler
+
+1. onFinish: By clicking submit button, onFinish function returns a value as object.
+   With this you can proceed other action, such as save to server or change state.
+   Return data is key value object for example: {collection:"abc",querystring:"123",.....}
+2. onValuesChange: returns two parameters, changedValues, allValues.
+   First value return just changed key value object, last value returns all key value object.
+   e.g.
+   a. changedValues: {collection:"abc"},
+   b. allValues:{collection:"abc",querystring:undefined.....}
+
+```javascript
+const onFinish = val => {
+  console.log(val)
+}
+const onValuesChange = (changedValues, allValues) => {
+  console.log(changedValues, allValues)
 }
 ```
 
+## Sample data(formArray)
+
+formArray is composed of two parts:
+
+1. list: items in the form
+2. setting: look and feel of the form
+
+```json
+{
+  "list": [
+    {
+      "label": "Collection",
+      "name": "collection",
+      "type": "input",
+      "seq": 0,
+      "placeholder": "database table",
+      "rules": [
+        {
+          "required": false
+        }
+      ],
+      "requiredmsg": "you must insert"
+    },
+    {
+      "label": "QueryString",
+      "name": "querystring",
+      "type": "input",
+      "seq": 1,
+      "placeholder": "pid=xxxx or _id=yyyy",
+      "msgright": "라이트 메시지"
+    },
+    {
+      "label": "Submit",
+      "name": "",
+      "type": "button",
+      "seq": 7,
+      "action": "submit",
+      "btnStyle": "primary",
+      "btnColor": "primary",
+      "align": "right"
+    }
+  ],
+  "setting": {
+    "editable": false,
+    "name": "antform",
+    "layout": "horizontal",
+    "formColumn": 1,
+    "formItemLayout": {
+      "labelCol": {
+        "span": 4
+      },
+      "wrapperCol": {
+        "span": 20
+      }
+    },
+    "tailLayout": {},
+    "initial": {},
+    "size": "middle",
+    "onFinish": "{values => {console.log(values);};}",
+    "initialValues": {}
+  }
+}
+```
+
+## Edit Form
+
+If you provide pros as showedit={true} and click edit button, it redirect edit page.
+
+[![FormEdit](https://i.ibb.co/ZhgW0SR/Imcformedit-small.png)](https://www.youtube.com/watch?v=_Fgp1g39Dc8 "Everything Is AWESOME")
+
+{" "}
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/MUQfKFzIOeU"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+## Author
+
+👤 **Youngki Nam**
+
+- Website: http://imcmaster.iptime.org
+- Github: [@ykn9080](https://github.com/ykn9080)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
 ---
 
-```js
-const Wrapper = ({ children }) => (
-  <div
-    style={{
-      background: "papayawhip",
-      width: "100%",
-      padding: "2rem",
-    }}
-  >
-    {children}
-  </div>
-)
-
-const Title = () => (
-  <h2 style={{ color: "palevioletred", textAlign: "center" }}>
-    Hello World!
-    <br />
-    Try Novela Gatsby Theme.
-  </h2>
-)
-
-render(
-  <Wrapper>
-    <Title />
-  </Wrapper>
-)
-```
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

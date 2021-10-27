@@ -5,25 +5,26 @@ import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
 import { wordCut } from "../utility"
-import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
 
 const InterestList = ({ data, location }) => {
   const intl = useIntl()
-  const interests = data.allMdx.nodes
-  const list = interests.map(work => {
+  const interests = data.allFile.nodes
+  const list = interests.map(({ childMdx: work }) => {
     return { title: work.frontmatter.title, slug: work.frontmatter.slug }
   })
+
   return (
     <Layout>
       <Seo title="Interest List" />
       <Breadcrumb location={location} />
       <div className="headtitle">
         <h3 style={{ fontWeight: 900 }}>Interest List</h3>
-        <p>What I am usually using or interested</p>
+        <p>{intl.formatMessage({ id: "interest-sub" })}</p>
       </div>
       <div className="bodycontent">
-        {interests.map(interest => {
+        {interests.map(({ childMdx: interest }) => {
           return (
             <div className="ImgContainer">
               <Link
@@ -53,7 +54,7 @@ export const query = graphql`
   query MyInterest($locale: String!) {
     allFile(
       filter: {
-        sourceInstanceName: { eq: "works" }
+        sourceInstanceName: { eq: "interests" }
         childMdx: { fields: { locale: { eq: $locale } } }
       }
     ) {

@@ -6,7 +6,7 @@ import Seo from "../components/SEO"
 import Img from "gatsby-image"
 import Breadcrumb from "../components/BreadCrumb"
 
-import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 // import { Button, Spin } from "antd"
 // import { makeStyles } from "@material-ui/core/styles"
 // import Dialog from "@material-ui/core/Dialog"
@@ -18,7 +18,7 @@ import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
 // import Slide from "@material-ui/core/Slide"
 
 import Video from "../components/Video"
-import { wordCut, findLocale } from "../utility"
+import { wordCut, pathClean } from "../utility"
 
 // const useStyles = makeStyles(theme => ({
 //   appBar: {
@@ -36,7 +36,7 @@ import { wordCut, findLocale } from "../utility"
 
 const WorkDetail = ({ data, location }) => {
   // const classes = useStyles()
-  console.log(data)
+
   const {
     title,
     excerpt,
@@ -58,7 +58,9 @@ const WorkDetail = ({ data, location }) => {
   // const handleClose = () => {
   //   setOpen(false)
   // }
-  const urlarr = location.pathname.split("/")
+  const urlarr1 = location.pathname.split("/")
+  const urlarr = pathClean(urlarr1)
+
   return (
     <>
       <Layout>
@@ -76,14 +78,16 @@ const WorkDetail = ({ data, location }) => {
             </div>
             <MDXRenderer>{data.mdx.body}</MDXRenderer>
             <div id="showyoutube">
-              <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
+              {videoSourceURL && (
+                <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
+              )}
             </div>
           </section>
           <section>
             <div className="sideList">
               <h6>Other List</h6>
               <ul>
-                {location.state.list.map((k, i) => {
+                {(location.state?.list || []).map((k, i) => {
                   const slug = `/${urlarr[1]}/${k.slug}`
                   let current = ""
                   if (urlarr[2] === k.slug) current = "selected"
@@ -119,6 +123,10 @@ const WorkDetail = ({ data, location }) => {
                 <a href={demo} target="showsite" title={demo}>
                   {wcut(demo)}
                 </a>
+              </div>
+              <h6>youtube</h6>
+              <div className="content">
+                <a href="#showyoutube">{videoTitle}</a>
               </div>
             </div>
           </section>

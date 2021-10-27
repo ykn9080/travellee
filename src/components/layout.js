@@ -7,7 +7,7 @@ import "../css/main.css"
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <ThemeProvider theme={theme}>
         <Navbar />
         {children}

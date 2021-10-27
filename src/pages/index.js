@@ -25,17 +25,8 @@ export default function Home({ data }) {
     autoplaySpeed: 4000,
     pauseOnHover: true,
   }
-  const works = data.allMdx.nodes
-
-  const slickList = [
-    {
-      title: "Dashboard",
-      content:
-        " Chart, Table, 이미지 등을 자유롭게 배치할 수 있다. 주제별로 여러개의 Dashboard를 만들수 있다.",
-      img: "dashboard_view.png",
-      link: "/works/dashboard",
-    },
-  ]
+  const works = data.allFile.nodes
+  console.log(works)
   return (
     <Layout>
       <SEO title="Home " />
@@ -101,8 +92,9 @@ export default function Home({ data }) {
           </article>
           <div className="slidercontainer">
             <Slider {...settings}>
-              {works.map(wk => {
+              {works.map(({ childMdx: wk }) => {
                 const work = wk.frontmatter
+                console.log(wk)
                 return (
                   <>
                     <h4>{work.title}</h4>
@@ -204,20 +196,32 @@ export default function Home({ data }) {
 }
 
 export const query = graphql`
-  query MySlick {
-    allMdx(filter: { frontmatter: { type: { eq: "work" } } }) {
+  query Myslick($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "works" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
       nodes {
-        frontmatter {
-          title
-          seq
-          slug
-          excerpt
-          thumb {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
+        childMdx {
+          frontmatter {
+            title
+            demo
+            videoTitle
+            videoSourceURL
+            thumb {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
+            slug
+            seq
+            npmorg
+            github
+            excerpt
           }
         }
       }

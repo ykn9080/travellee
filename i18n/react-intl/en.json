@@ -1,4 +1,8 @@
 {
   "mypositioning": "Fullstack web developer",
-  "work-sub": "Project & Modules I've created"
+  "work-head": "Work Portfolio",
+  "work-sub": "Project & Modules I've created",
+  "interest-sub": "What I am usually using or interested",
+  "about-head": "About me",
+  "about-sub": ""
 }
