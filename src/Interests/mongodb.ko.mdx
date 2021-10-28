@@ -32,8 +32,9 @@ models.Allpurpose = mongoose.model("Allpurpose", allpurposeSchema);
 
 module.exports = models;
 
-$$$$$|javascript|controller|재사용가능한 CRUD로 모든 모델에서 공통사용 모든 모델을 한곳에서 처리함 ./model/models.js
-/router/reuseCRUD.js에서 접근처리
+$$$$$|javascript|controller|재사용가능한 CRUD로 모든 모델에서 공통사용
+모든 모델을 한곳에서 처리함
+ ./model/models.js /router/reuseCRUD.js에서 접근처리
 const express = require("express");
 
 module.exports = (Collection) => {

@@ -1,31 +1,21 @@
 import React from "react"
 import { graphql } from "gatsby"
+import _ from "lodash"
 import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
 import SEO from "../components/SEO"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Img from "gatsby-image"
-import { Button } from "antd"
 import { FaSearchPlus } from "react-icons/fa"
-import { wordCut } from "../utility"
 import { useIntl } from "react-intl"
-import { LocalizedLink as Link, LocalesList } from "gatsby-theme-i18n"
+import WorkList from "../components/WorkList"
 
 export default function Home({ data }) {
   const intl = useIntl()
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
-  }
-  const works = data.allFile.nodes
+  const works = _.filter(data.allFile.nodes, o => {
+    return o.sourceInstanceName === "works"
+  })
+  const interests = _.filter(data.allFile.nodes, o => {
+    return o.sourceInstanceName === "interests"
+  })
   console.log(works)
   return (
     <Layout>
@@ -90,105 +80,17 @@ export default function Home({ data }) {
               publish한 것과 github에서 clone해서 사용하는 것이 섞여 있음.
             </p>
           </article>
-          <div className="slidercontainer">
-            <Slider {...settings}>
-              {works.map(({ childMdx: wk }) => {
-                const work = wk.frontmatter
-                console.log(wk)
-                return (
-                  <>
-                    <h4>{work.title}</h4>
-                    <div className="gridtwo">
-                      <article>
-                        <div className="gridtwo30">
-                          <p>{wordCut(work.excerpt, 40, "", "...")}</p>
-                        </div>
-                      </article>
-                      <Link to={`/works/${work.slug}`} key={work.title}>
-                        <Img
-                          style={{
-                            margin: "1rem",
-                            maxHeight: "calc(70vh - 4rem)",
-                          }}
-                          imgStyle={{ objectFit: "contain" }}
-                          fluid={work.thumb.childImageSharp.fluid}
-                        />
-                        <div style={{ textAlign: "right", marginTop: 10 }}>
-                          <Button>View Detail </Button>
-                        </div>
-                      </Link>
-                    </div>
-                  </>
-                )
-              })}
-
-              {/* <div className="gridtwo">
-                <article>
-                  <h4>Dashboard</h4>
-                  <div className="gridtwo30">
-                    <p>
-                      Chart, Table, 이미지 등을 자유롭게 배치할 수 있다.
-                      주제별로 여러개의 Dashboard를 만들수 있다.
-                    </p>
-                  </div>
-                </article>
-                <div>
-                  <Link key="11" to={`/works/dashboard`}>
-                    <StaticImage
-                      src="../images/work/dashboard_view.png"
-                      alt="project image"
-                      placeholder="tracedSVG"
-                    ></StaticImage>
-                  </Link>
-                  <div style={{ textAlign: "right", marginTop: 10 }}>
-                    <Link key="1" to={`/works/dashboard`}>
-                      <Button>View Detail </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <StaticImage
-                  src="../images/project/project-image02.png"
-                  className="img-fluid"
-                  alt="project image"
-                  placeholder="tracedSVG"
-                  layout="fullWidth"
-                ></StaticImage>
-              </div>
-
-              <div>
-                <StaticImage
-                  src="../images/project/project-image03.png"
-                  className="img-fluid"
-                  alt="project image"
-                  placeholder="tracedSVG"
-                  layout="fullWidth"
-                ></StaticImage>
-              </div>
-
-              <div>
-                <StaticImage
-                  src="../images/project/project-image04.png"
-                  className="img-fluid"
-                  alt="project image"
-                  placeholder="tracedSVG"
-                  layout="fullWidth"
-                ></StaticImage>
-              </div>
-
-              <div>
-                <StaticImage
-                  src="../images/project/project-image05.png"
-                  className="img-fluid"
-                  alt="project image"
-                  placeholder="tracedSVG"
-                  layout="fullWidth"
-                ></StaticImage>
-              </div> */}
-            </Slider>
-          </div>
+          <WorkList data={works} type="work" />
+        </section>
+        <section>
+          <article>
+            <h3>관심분야</h3>
+            <p>
+              MERN stack개발에 필요한 제반 기술들. Documentation, S3 file server
+              등 개발관련 기술과 Docker, CI/CD 등 DevOps관련 기술들
+            </p>
+          </article>
+          <WorkList data={interests} type="interest" />
         </section>
       </main>
     </Layout>
@@ -199,8 +101,8 @@ export const query = graphql`
   query Myslick($locale: String!) {
     allFile(
       filter: {
-        sourceInstanceName: { eq: "works" }
         childMdx: { fields: { locale: { eq: $locale } } }
+        sourceInstanceName: { in: ["works", "interests"] }
       }
     ) {
       nodes {
@@ -222,8 +124,10 @@ export const query = graphql`
             npmorg
             github
             excerpt
+            type
           }
         }
+        sourceInstanceName
       }
     }
   }

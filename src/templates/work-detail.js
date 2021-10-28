@@ -70,13 +70,12 @@ const WorkDetail = ({ data, location }) => {
           <section>
             <h2>{title}</h2>
             <div>{excerpt}</div>
-            <div className="Img2div">
-              <Img
-                className="Img2"
-                fluid={featureImage.childImageSharp.fluid}
-              />
+            <div className="interestimg">
+              <Img fluid={featureImage.childImageSharp.fluid} />
             </div>
-            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            <div>
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            </div>
             <div id="showyoutube">
               {videoSourceURL && (
                 <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />

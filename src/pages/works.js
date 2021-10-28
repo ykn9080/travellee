@@ -1,10 +1,10 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import Layout from "../../components/Layout"
-import Seo from "../../components/SEO"
-import Breadcrumb from "../../components/BreadCrumb"
+import Layout from "../components/Layout"
+import Seo from "../components/SEO"
+import Breadcrumb from "../components/BreadCrumb"
 import Img from "gatsby-image"
-import { wordCut } from "../../utility"
+import { wordCut } from "../utility"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
 
@@ -25,8 +25,6 @@ const WorkList = ({ data, location }) => {
       </div>
       <div className="bodycontent">
         {works.map(({ childMdx: work }) => {
-          // let locale = ""
-          // if (work.fields.locale) locale = `/${work.fields.locale}`
           return (
             <div className="ImgContainer ImgLarge">
               <Link

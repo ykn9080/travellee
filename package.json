@@ -29,6 +29,7 @@
     "gatsby-theme-i18n-react-intl": "^2.0.0",
     "gatsby-transformer-sharp": "^3.13.0",
     "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.2.1",
     "prop-types": "^15.7.2",
@@ -40,7 +41,6 @@
     "react-intl": "^5.21.0",
     "react-slick": "^0.28.1",
     "react-syntax-highlighter": "^15.4.4",
-    "slick-carousel": "^1.8.1",
     "theme-ui": "^0.11.3"
   },
   "devDependencies": {
