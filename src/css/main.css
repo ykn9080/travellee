@@ -288,11 +288,12 @@ button.block {
   width: 90vw;
   max-width: var(--max-width);
   margin: 0 auto;
-}
-.page {
+  padding-bottom: 50px;
   min-height: calc(100vh - (6rem + 4rem));
 }
-
+.page section {
+  padding-bottom: 50px;
+}
 .title {
   text-align: center;
   margin-bottom: 2rem;
@@ -761,13 +762,18 @@ blockquote cite:before {
   display: grid;
   background-color: var(--backgroundColor);
   color: var(--textColor);
-  padding: 5px;
+  padding: 15px;
   grid-template-columns: 1fr 3fr;
-  grid-gap: 20px;
+  grid-gap: 30px;
   margin: 0 auto;
   line-height: 1.2;
+  border: solid grey 1px;
+  border-radius: 5px;
+  box-shadow: var(--shadow-1);
 }
-
+.worklist .content:hover {
+  box-shadow: var(--shadow-4);
+}
 .interestlist {
   display: grid;
   background-color: var(--backgroundColor);
@@ -950,7 +956,6 @@ blockquote cite:before {
 .interestimg {
   max-height: 200px;
   max-width: 350px;
-  margin-bottom: 20px;
 }
 @media screen and (max-width: 1200px) {
   .bodycontent {

@@ -10,8 +10,8 @@ import { useIntl } from "react-intl"
 
 const WorkList = ({ data, location }) => {
   const intl = useIntl()
-  const works = data.allFile.nodes
-  const list = works.map(({ childMdx: work }) => {
+  const works = data.allMdx.nodes
+  const list = works.map(work => {
     return { title: work.frontmatter.title, slug: work.frontmatter.slug }
   })
 
@@ -24,7 +24,7 @@ const WorkList = ({ data, location }) => {
         <p> {intl.formatMessage({ id: "work-sub" })}</p>
       </div>
       <div className="bodycontent">
-        {works.map(({ childMdx: work }) => {
+        {works.map(work => {
           return (
             <div className="ImgContainer ImgLarge">
               <Link
@@ -52,32 +52,30 @@ const WorkList = ({ data, location }) => {
 }
 export const query = graphql`
   query hello($locale: String!) {
-    allFile(
+    allMdx(
       filter: {
-        sourceInstanceName: { eq: "works" }
-        childMdx: { fields: { locale: { eq: $locale } } }
+        fields: { locale: { eq: $locale } }
+        frontmatter: { type: { eq: "work" } }
       }
     ) {
       nodes {
-        childMdx {
-          frontmatter {
-            title
-            demo
-            videoTitle
-            videoSourceURL
-            thumb {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+        frontmatter {
+          title
+          demo
+          videoTitle
+          videoSourceURL
+          thumb {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
-            slug
-            seq
-            npmorg
-            github
-            excerpt
           }
+          slug
+          seq
+          npmorg
+          github
+          excerpt
         }
       }
     }

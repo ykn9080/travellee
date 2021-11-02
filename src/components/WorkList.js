@@ -5,14 +5,15 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import "../css/main.css"
 
 const WorkList = ({ data, type }) => {
-  const list = data.map(({ childMdx: dt }) => {
+  console.log(data)
+  const list = data.map(dt => {
     return { title: dt.frontmatter.title, slug: dt.frontmatter.slug }
   })
 
   const WkList = ({ data }) => {
     return (
       <div className="worklist">
-        {data.map(({ childMdx: dt }) => {
+        {data.map(dt => {
           return (
             <div className="content">
               <div className="Img2div">
@@ -42,7 +43,7 @@ const WorkList = ({ data, type }) => {
   const InterestList = ({ data }) => {
     return (
       <div className="interestlist">
-        {data.map(({ childMdx: dt }) => {
+        {data.map(dt => {
           return (
             <Link
               to={`/${dt.frontmatter.type}s/${dt.frontmatter.slug}`}

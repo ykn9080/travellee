@@ -10,11 +10,11 @@ import WorkList from "../components/WorkList"
 
 export default function Home({ data }) {
   const intl = useIntl()
-  const works = _.filter(data.allFile.nodes, o => {
-    return o.sourceInstanceName === "works"
+  const works = _.filter(data.allMdx.nodes, o => {
+    return o.frontmatter.type === "work"
   })
-  const interests = _.filter(data.allFile.nodes, o => {
-    return o.sourceInstanceName === "interests"
+  const interests = _.filter(data.allMdx.nodes, o => {
+    return o.frontmatter.type === "interest"
   })
   console.log(works)
   return (
@@ -99,35 +99,27 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query Myslick($locale: String!) {
-    allFile(
-      filter: {
-        childMdx: { fields: { locale: { eq: $locale } } }
-        sourceInstanceName: { in: ["works", "interests"] }
-      }
-    ) {
+    allMdx(filter: { fields: { locale: { eq: $locale } } }) {
       nodes {
-        childMdx {
-          frontmatter {
-            title
-            demo
-            videoTitle
-            videoSourceURL
-            thumb {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+        frontmatter {
+          title
+          demo
+          videoTitle
+          videoSourceURL
+          thumb {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
-            slug
-            seq
-            npmorg
-            github
-            excerpt
-            type
           }
+          slug
+          seq
+          npmorg
+          github
+          excerpt
+          type
         }
-        sourceInstanceName
       }
     }
   }

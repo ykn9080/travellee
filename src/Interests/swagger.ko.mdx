@@ -6,13 +6,12 @@ type: interest
 language: kr
 featureImage: ../images/interest/swagger_logo.png
 thumb: ../images/interest/swagger_logo.png
-github:
-demo:
+github: https://github.com/ykn9080/imcnode
+demo: http://imcmaster.iptime.org:9006/swagger
 excerpt: api 서비스 documentation용으로 사용되는 swagger와 jsdoc을 결합한 swagger doc을 활용한 document
 ---
 
-|yaml|swagger setting
-셋팅설정에서 apis부분이 빌드시 document화 할 파일을 지정한다.
+### swagger setting
 
 ```js
 const swaggerJsDoc = require("swagger-jsdoc")
@@ -41,24 +40,11 @@ module.exports = app => {
 }
 ```
 
-### |yaml|swagger jsdocs tag
+swaggerOptions중 servers는 문서화할 서버 url을 표시한다.
+apis는 서비내 문서중 swagger문서를 첨부한 파일 또는 디렉토리를 지정한다.
+마지막으로 적성된 문서에 접근할 수 있는 endpoint로 "/swagger"등과 같이 지정한다.
 
-**This is bold text**
-
-> Blockquotes can also be nested...
-
-- Create a list by starting a line with `+`, `-`, or `*`
-
----
-
-**Advertisement :)**
-
-- **[pica](https://nodeca.github.io/pica/demo/)** - high quality and fast image
-  resize in browser.
-- **[babelfish](https://github.com/nodeca/babelfish/)** - developer friendly
-  i18n with plurals support and easy syntax.
-
-  node문서 내에 api function위에 documentation을 직접한후 compile시 문서화할 수 있어 편리하다.
+### swagger jsdocs tag
 
 ```js
 /**
@@ -94,3 +80,6 @@ app.put("/customer", (req, res) => {
   res.status(200).send("Successfully updated customer")
 })
 ```
+
+node문서 내에 api function위에 documentation을 직접한후 compile시 문서화할 수 있어 편리하다.
+또는 별도의 파일에 문서를 작성할 수도 있다.

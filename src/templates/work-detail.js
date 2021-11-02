@@ -70,8 +70,11 @@ const WorkDetail = ({ data, location }) => {
           <section>
             <h2>{title}</h2>
             <div>{excerpt}</div>
-            <div className="interestimg">
-              <Img fluid={featureImage.childImageSharp.fluid} />
+            <div style={{ marginTop: 30, marginBottom: 30 }}>
+              <Img
+                className="interestimg"
+                fluid={featureImage.childImageSharp.fluid}
+              />
             </div>
             <div>
               <MDXRenderer>{data.mdx.body}</MDXRenderer>

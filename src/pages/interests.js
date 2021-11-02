@@ -10,8 +10,8 @@ import { useIntl } from "react-intl"
 
 const InterestList = ({ data, location }) => {
   const intl = useIntl()
-  const interests = data.allFile.nodes
-  const list = interests.map(({ childMdx: work }) => {
+  const interests = data.allMdx.nodes
+  const list = interests.map(work => {
     return { title: work.frontmatter.title, slug: work.frontmatter.slug }
   })
 
@@ -24,7 +24,7 @@ const InterestList = ({ data, location }) => {
         <p>{intl.formatMessage({ id: "interest-sub" })}</p>
       </div>
       <div className="bodycontent">
-        {interests.map(({ childMdx: interest }) => {
+        {interests.map(interest => {
           return (
             <div className="ImgContainer">
               <Link
@@ -52,32 +52,31 @@ const InterestList = ({ data, location }) => {
 }
 export const query = graphql`
   query MyInterest($locale: String!) {
-    allFile(
+    allMdx(
       filter: {
-        sourceInstanceName: { eq: "interests" }
-        childMdx: { fields: { locale: { eq: $locale } } }
+        fields: { locale: { eq: $locale } }
+        frontmatter: { type: { eq: "interest" } }
       }
     ) {
       nodes {
-        childMdx {
-          frontmatter {
-            title
-            demo
-            videoTitle
-            videoSourceURL
-            thumb {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+        frontmatter {
+          title
+          demo
+          videoTitle
+          videoSourceURL
+          thumb {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
-            slug
-            seq
-            npmorg
-            github
-            excerpt
           }
+          slug
+          seq
+          npmorg
+          github
+          excerpt
+          type
         }
       }
     }
