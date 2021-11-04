@@ -953,9 +953,16 @@ blockquote cite:before {
   min-height: 100px;
   min-width: 250px;
 }
+
 .interestimg {
-  max-height: 200px;
-  max-width: 350px;
+  float: right;
+  width: 50%;
+  margin-left: 20px;
+  /* border: solid gray 1px;
+  border-radius: var(--borderRadius);
+  letter-spacing: var(--letterSpacing);
+  box-shadow: var(--shadow-3);
+  transition: var(--transition); */
 }
 @media screen and (max-width: 1200px) {
   .bodycontent {

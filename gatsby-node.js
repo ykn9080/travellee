@@ -19,15 +19,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const template = require.resolve(`./src/templates/work-detail.js`)
   const result = await graphql(`
     {
-      contents: allFile(
-        filter: { sourceInstanceName: { in: ["works", "interests"] } }
+      contents: allMdx(
+        filter: { frontmatter: { type: { in: ["work", "interest"] } } }
       ) {
         nodes {
-          childMdx {
-            frontmatter {
-              slug
-              type
-            }
+          frontmatter {
+            slug
+            type
           }
         }
       }
@@ -39,7 +37,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const contentList = result.data.contents.nodes
-  contentList.forEach(({ childMdx: node }) => {
+
+  contentList.forEach(node => {
     return createPage({
       path: `${node.frontmatter.type}s/${node.frontmatter.slug}`,
       component: template,

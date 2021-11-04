@@ -4,7 +4,7 @@ import $ from "jquery"
 import { FiAlignJustify } from "react-icons/fi"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { useColorMode } from "theme-ui"
-import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
+import { LocalizedLink } from "gatsby-theme-i18n"
 import { setCookie, getCookie } from "../utility"
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -153,11 +153,19 @@ const Navbar = () => {
       </nav>
       {showLang && (
         <div id="dvLang">
-          <Link to="/en" hrefLang="en" onClick={() => selLang("en")}>
+          <Link
+            to={`/en${window.location.pathname.replace("/en", "")}`}
+            hrefLang="en"
+            onClick={() => selLang("en")}
+          >
             {usimg1}
             <span>English</span>
           </Link>
-          <Link to="/" hrefLang="ko" onClick={() => selLang("ko")}>
+          <Link
+            to={`${window.location.pathname.replace("/en", "")}`}
+            hrefLang="ko"
+            onClick={() => selLang("ko")}
+          >
             {krimg1}
             <span>한국어</span>
           </Link>

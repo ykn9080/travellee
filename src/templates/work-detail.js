@@ -69,14 +69,15 @@ const WorkDetail = ({ data, location }) => {
         <main className="work workdetail">
           <section>
             <h2>{title}</h2>
-            <div>{excerpt}</div>
-            <div style={{ marginTop: 30, marginBottom: 30 }}>
+            <div style={{ marginBottom: "30px" }}>
               <Img
                 className="interestimg"
                 fluid={featureImage.childImageSharp.fluid}
               />
+
+              {excerpt}
             </div>
-            <div>
+            <div style={{ clear: "both" }}>
               <MDXRenderer>{data.mdx.body}</MDXRenderer>
             </div>
             <div id="showyoutube">

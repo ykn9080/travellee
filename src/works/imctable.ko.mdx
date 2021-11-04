@@ -12,46 +12,127 @@ demo: http://imcmaster.iptime.org:3009
 excerpt: json data만으로 table을 생성할 수 있다. column추가, column제목 및 순서변경등의 조작이 가능하다. 입력된 데이터를 groupby해서 sum,avg,count등을 추가할수있다.
 ---
 
-##Table of Contents
+<h1 align="center">IMC EasyTable</h1>
 
-1. HTML Structure
-2. CSS Files
-3. Javascript Files
-4. PSD Files
-5. Theme Styles
-6. Tweaking Javascript
-7. Tweaking CSS
-8. Browser Compatibility
+Create and manage table with ease.
 
-##1. HTML Structure
-The HTML Structure for each page is as follows:
+[![](https://gw.alipayobjects.com/mdn/rms_08e378/afts/img/A*Yl83RJhUE7kAAAAAAAAAAABkARQnAQ)](https://ant.design)
 
-- Meta
-- Link to CSS Files
-- Header
-  - Logo
-  - Social Links
-- Navigation
-- Main Content
-  - Content Slider
-  - Articles
-- Sidebar
-  - Search
-  - Post Archives
-  - Mailing List
-- Link to Javascript Files
-- Javascript
+English | [Korean](./README-kr_KR.md)
 
-##2. CSS Files
-There are 3 CSS files in this theme:
+## ✨ Features
 
-- main.css
-- colors.css
-- skeleton.css
+- 🌈 Editable .
+- 📦 Add new calculated columes.
+- 🛡 Delete or rearrange columes.
+- ⚙️ Group by a column and make sum,avg.
+  |
 
-#####main.css
-This CSS file is the main stylesheet for the theme. It holds all the values for the different elements of theme and the default color scheme.
-#####colors.css
-This CSS file holds the styling of all the other colors schemes that are included in the theme.
-#####skeleton.css
-This CSS file allows the theme to be responsive, adapting to different screen sizes.
+## 📦 Install
+
+```bash
+npm install imceasytable
+```
+
+```bash
+yarn add imceasytable
+```
+
+## 🔨 Usage
+
+```jsx
+import React from "react";
+import "./App.css";
+
+import EasyTable from "imceasytable";
+
+const App = (props) => {
+  const onChange=(return)=>{
+
+  }
+  return (
+    <div>
+      <EasyTable showmenu={false} authObj={sampledata} onChange={onChange}/>
+    </div>
+  );
+};
+
+export default App;
+```
+
+## 📜 Document & API
+
+| Property | Description                   | Type                    | defaultValue |
+| -------- | ----------------------------- | ----------------------- | ------------ |
+| showmenu | edit or display               | boolean                 |              |
+| authObj  | chart data & setting          | json data               |              |
+| onChange | return changed data from edit | (val)=>console.log(val) |              |
+
+show edit button if you change showmenu={true}
+
+sampledata example:
+
+```jsx
+const sampledata = {
+  setting: {
+    column: [
+      {
+        title: "name",
+        titletext: "name",
+        origin: "name",
+        dataIndex: "name",
+        key: "name",
+        datatype: "string",
+      },
+      {
+        title: "math",
+        titletext: "math",
+        origin: "math",
+        dataIndex: "math",
+        key: "math",
+        datatype: "int",
+      },
+      {
+        title: "english",
+        titletext: "english",
+        origin: "english",
+        dataIndex: "english",
+        key: "english",
+        datatype: "int",
+      },
+    ],
+    reset: false,
+    title: "Score",
+    size: "small",
+  },
+  dtlist: [
+    {
+      key: "1",
+      name: "John Brown",
+      math: 60,
+      english: 70,
+    },
+    {
+      key: "2",
+      name: "Jim Green",
+      math: 66,
+      english: 89,
+    },
+  ],
+}
+```
+
+## ⌨️ Development
+
+https://github.com/ykn9080/imcTable
+
+Or clone locally:
+
+```bash
+$ git clone git@github.com:ykn9080/imctable.git
+$ cd imctable
+$ npm install
+$ npm start
+```
+
+Open your browser and visit http://127.0.0.1:3009
