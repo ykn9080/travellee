@@ -20,23 +20,9 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import Video from "../components/Video"
 import { wordCut, pathClean } from "../utility"
 
-// const useStyles = makeStyles(theme => ({
-//   appBar: {
-//     position: "relative",
-//   },
-//   title: {
-//     marginLeft: theme.spacing(2),
-//     flex: 1,
-//     color: "white",
-//   },
-// }))
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//   return <Slide direction="up" ref={ref} {...props} />
-// })
-
 const WorkDetail = ({ data, location }) => {
   // const classes = useStyles()
-
+  console.log(data)
   const {
     title,
     excerpt,
@@ -69,21 +55,21 @@ const WorkDetail = ({ data, location }) => {
         <main className="work workdetail">
           <section>
             <h2>{title}</h2>
-            <div style={{ marginBottom: "30px" }}>
+            <div className="gridtwo">
               <Img
-                className="interestimg"
+                // className="interestimg"
                 fluid={featureImage.childImageSharp.fluid}
               />
 
               {excerpt}
             </div>
             <div style={{ clear: "both" }}>
-              <MDXRenderer>{data.mdx.body}</MDXRenderer>
-            </div>
-            <div id="showyoutube">
               {videoSourceURL && (
                 <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
               )}
+            </div>
+            <div>
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
             </div>
           </section>
           <section>
@@ -128,9 +114,14 @@ const WorkDetail = ({ data, location }) => {
                 </a>
               </div>
               <h6>youtube</h6>
-              <div className="content">
-                <a href="#showyoutube">{videoTitle}</a>
-              </div>
+              {videoTitle &&
+                videoTitle.split(";").map((title, j) => {
+                  return (
+                    <div className="content">
+                      <a href={`#showyoutube_${j}`}>{title}</a>
+                    </div>
+                  )
+                })}
             </div>
           </section>
         </main>
