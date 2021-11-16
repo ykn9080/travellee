@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import { StaticImage } from "gatsby-plugin-image"
 import { useIntl } from "react-intl"
+import { MultiPhrase } from "../utility"
 
 export const About = ({ location }) => {
   const intl = useIntl()
@@ -11,29 +12,23 @@ export const About = ({ location }) => {
     <Layout>
       <Seo title="About me" />
       <Breadcrumb location={location} />
-      <div className="headtitle">
-        <h3 style={{ fontWeight: 900 }}>
-          {intl.formatMessage({ id: "about-head" })}
-        </h3>
-        <h5>{intl.formatMessage({ id: "about-sub" })}</h5>
-      </div>
-      <div className="bodycontent">
-        <div>
-          {intl
-            .formatMessage({ id: "about-body" })
-            .split("^")
-            .map(line => {
-              return <p>{line}</p>
-            })}
-        </div>
-        <StaticImage
-          src="../images/yknam1.jpg"
-          className="img-fluid"
-          alt="myself"
-          width={400}
-          placeholder="tracedSVG"
-        ></StaticImage>
-      </div>
+      <main>
+        <header>
+          <h1>{intl.formatMessage({ id: "about-head" })}</h1>
+          <p>{intl.formatMessage({ id: "about-sub" })}</p>
+        </header>
+        <section className="gridtwo">
+          <MultiPhrase id="about-body" />
+
+          <StaticImage
+            src="../images/yknam1.jpg"
+            className="img-fluid"
+            alt="myself"
+            width={400}
+            placeholder="tracedSVG"
+          ></StaticImage>
+        </section>
+      </main>
     </Layout>
   )
 }

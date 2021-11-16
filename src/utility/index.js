@@ -1,3 +1,6 @@
+import React from "react"
+import { useIntl } from "react-intl"
+
 export function wordWrap(str, maxWidth) {
   var newLineStr = "\n",
     res = "",
@@ -43,8 +46,10 @@ let strpos = function (haystack, needle, offset) {
 }
 
 export function wordCut(value, length, preserve = "", separator = "") {
+  let rtnval = ""
   let breakpoint = false
   if (!value) return ""
+
   if (value.length > length) {
     if (preserve) {
       if (false !== (breakpoint = strpos(value, " ", length))) {
@@ -56,10 +61,10 @@ export function wordCut(value, length, preserve = "", separator = "") {
       }
     }
 
-    value = value.substring(0, length)
-    value = rtrim(value, "!,.-")
+    rtnval = value.substring(0, length)
+    rtnval = rtrim(rtnval, "!,.-")
 
-    return value + separator
+    return rtnval + separator
   }
 
   return value
@@ -106,4 +111,18 @@ export const pathClean = pathlist => {
     pathlist.splice(1, 1)
   }
   return pathlist
+}
+
+export const MultiPhrase = ({ id }) => {
+  const intl = useIntl()
+  return (
+    <div>
+      {intl
+        .formatMessage({ id })
+        .split("^")
+        .map(line => {
+          return <p>{line}</p>
+        })}
+    </div>
+  )
 }

@@ -72,7 +72,7 @@ const Navbar = () => {
   )
   return (
     <>
-      <nav className="navbar">
+      <nav>
         <div className="nav-center">
           <div className="nav-header">
             <LocalizedLink to="/">

@@ -5,24 +5,11 @@ import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
 import Breadcrumb from "../components/BreadCrumb"
-
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
-// import { Button, Spin } from "antd"
-// import { makeStyles } from "@material-ui/core/styles"
-// import Dialog from "@material-ui/core/Dialog"
-// import AppBar from "@material-ui/core/AppBar"
-// import Toolbar from "@material-ui/core/Toolbar"
-// import IconButton from "@material-ui/core/IconButton"
-// import Typography from "@material-ui/core/Typography"
-// import { AiOutlineClose } from "react-icons/ai"
-// import Slide from "@material-ui/core/Slide"
-
 import Video from "../components/Video"
 import { wordCut, pathClean } from "../utility"
 
 const WorkDetail = ({ data, location }) => {
-  // const classes = useStyles()
-  console.log(data)
   const {
     title,
     excerpt,
@@ -52,118 +39,83 @@ const WorkDetail = ({ data, location }) => {
       <Layout>
         <Seo title={title} />
         <Breadcrumb location={location} />
-        <main className="work workdetail">
-          <section>
-            <h2>{title}</h2>
-            <div className="gridtwo">
-              <Img
-                // className="interestimg"
-                fluid={featureImage.childImageSharp.fluid}
-              />
-
-              {excerpt}
-            </div>
-            <div style={{ clear: "both" }}>
-              {videoSourceURL && (
-                <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
-              )}
-            </div>
-            <div>
-              <MDXRenderer>{data.mdx.body}</MDXRenderer>
-            </div>
-          </section>
-          <section>
-            <div className="sideList">
-              <h6>Other List</h6>
-              <ul>
-                {(location.state?.list || []).map((k, i) => {
-                  const slug = `/${urlarr[1]}/${k.slug}`
-                  let current = ""
-                  if (urlarr[2] === k.slug) current = "selected"
-                  return (
-                    <li>
-                      <Link
-                        to={slug}
-                        state={{ list: location.state.list }}
-                        className={current}
-                      >
-                        {k.title}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-            <div className="toc">
-              <h6>github</h6>
-              <div className="content">
-                <a href={github} target="showsite" title={github}>
-                  {wcut(github)}
-                </a>
+        <main>
+          <header>
+            <h1>{title}</h1>
+          </header>
+          <div className="work">
+            <section>
+              <article className="gridtwo">
+                <p>{excerpt}</p>
+                <Img
+                  className="interestimg"
+                  fluid={featureImage.childImageSharp.fluid}
+                />
+              </article>
+              <article>
+                {videoSourceURL && (
+                  <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
+                )}
+              </article>
+              <article>
+                <MDXRenderer>{data.mdx.body}</MDXRenderer>
+              </article>
+            </section>
+            <section>
+              <div className="sideList">
+                <h6>Other List</h6>
+                <ul>
+                  {(location.state?.list || []).map((k, i) => {
+                    const slug = `/${urlarr[1]}/${k.slug}`
+                    let current = ""
+                    if (urlarr[2] === k.slug) current = "selected"
+                    return (
+                      <li>
+                        <Link
+                          to={slug}
+                          state={{ list: location.state.list }}
+                          className={current}
+                        >
+                          {k.title}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
               </div>
-              <h6>npm</h6>
-              <div className="content">
-                <a href={npmorg} target="showsite" title={npmorg}>
-                  {wcut(npmorg)}
-                </a>
+              <div className="toc">
+                <h6>github</h6>
+                <div className="content1">
+                  <a href={github} target="showsite" title={github}>
+                    {wcut(github)}
+                  </a>
+                </div>
+                <h6>npm</h6>
+                <div className="content1">
+                  <a href={npmorg} target="showsite" title={npmorg}>
+                    {wcut(npmorg)}
+                  </a>
+                </div>
+                <h6>demo</h6>
+                <div className="content1">
+                  <a href={demo} target="showsite" title={demo}>
+                    {wcut(demo)}
+                  </a>
+                </div>
+                <h6>youtube</h6>
+                {videoTitle &&
+                  videoTitle.split(";").map((title, j) => {
+                    return (
+                      <div className="content">
+                        <a href={`#showyoutube_${j}`}>{title}</a>
+                      </div>
+                    )
+                  })}
               </div>
-              <h6>demo</h6>
-              <div className="content">
-                <a href={demo} target="showsite" title={demo}>
-                  {wcut(demo)}
-                </a>
-              </div>
-              <h6>youtube</h6>
-              {videoTitle &&
-                videoTitle.split(";").map((title, j) => {
-                  return (
-                    <div className="content">
-                      <a href={`#showyoutube_${j}`}>{title}</a>
-                    </div>
-                  )
-                })}
-            </div>
-          </section>
+            </section>
+          </div>
         </main>
       </Layout>
-      {/* <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <AiOutlineClose />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}></Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              Close
-            </Button>
-          </Toolbar>
-        </AppBar>
-        {loading ? (
-          <div className="spin">
-            <Spin size="large" />
-          </div>
-        ) : null}
-        <iframe
-          src={path}
-          onLoad={() => setLoading(false)}
-          loading="lazy"
-          width="100%"
-          height="800px"
-          frameBorder="0"
-          scrolling="no"
-          allowfullscreen
-        ></iframe>
-      </Dialog> */}
     </>
   )
 }

@@ -12,32 +12,32 @@ const WorkList = ({ data, type }) => {
 
   const WkList = ({ data }) => {
     return (
-      <div className="worklist">
-        {data.map(dt => {
-          return (
-            <div className="content">
-              <div className="Img2div">
-                <Img
-                  className="Img1"
-                  fluid={dt.frontmatter.thumb.childImageSharp.fluid}
-                />
-              </div>
-              <div>
+      <>
+        <section className="bodycontent">
+          {data.map(work => {
+            return (
+              <div className="ImgContainer1">
                 <Link
-                  to={`/${dt.frontmatter.type}s/${dt.frontmatter.slug}`}
-                  key={dt.title}
+                  to={`/works/${work.frontmatter.slug}`}
+                  key={work.title}
                   state={{ list: list }}
                 >
-                  <h5>{dt.frontmatter.title}</h5>
+                  <h1>{work.frontmatter.title}</h1>
+                  <div className="Img2div">
+                    <Img
+                      className="Img1"
+                      fluid={work.frontmatter.thumb.childImageSharp.fluid}
+                    />
+                  </div>
+                  {/* <p title={work.frontmatter.excerpt}>
+                    {wordCut(work.frontmatter.excerpt, 80, "", " ...")}
+                  </p> */}
                 </Link>
-                <p title={dt.frontmatter.excerpt}>
-                  {wordCut(dt.frontmatter.excerpt, 180, "", "...")}
-                </p>
               </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </section>
+      </>
     )
   }
   const InterestList = ({ data }) => {
@@ -48,13 +48,13 @@ const WorkList = ({ data, type }) => {
             <Link
               to={`/${dt.frontmatter.type}s/${dt.frontmatter.slug}`}
               key={dt.title}
+              title={dt.frontmatter.title}
               state={{ list: list }}
             >
               <Img
                 className="imgInterest"
                 fluid={dt.frontmatter.thumb.childImageSharp.fluid}
               />
-              <h5>{dt.frontmatter.title}</h5>
             </Link>
           )
         })}
