@@ -107,7 +107,7 @@ export function setCookie(cname, cvalue, exdays) {
 export const pathClean = pathlist => {
   if (!pathlist) pathlist = []
   //const pathlist = pathname?.split("/") || []
-  if (["ko", "en"].indexOf(pathlist[1]) > -1) {
+  if (["ko", "en", "gatsbymyhome"].indexOf(pathlist[1]) > -1) {
     pathlist.splice(1, 1)
   }
   return pathlist
