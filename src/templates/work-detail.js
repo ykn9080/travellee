@@ -82,34 +82,24 @@ const WorkDetail = ({ data, location }) => {
                     )
                   })}
                 </ul>
-              </div>
-              <div className="toc">
+                {/* </div>
+              <div className="toc"> */}
                 <h6>github</h6>
-                <div className="content1">
-                  <a href={github} target="showsite" title={github}>
-                    {wcut(github)}
-                  </a>
-                </div>
+                <a href={github} target="showsite" title={github}>
+                  {wcut(github)}
+                </a>
                 <h6>npm</h6>
-                <div className="content1">
-                  <a href={npmorg} target="showsite" title={npmorg}>
-                    {wcut(npmorg)}
-                  </a>
-                </div>
+                <a href={npmorg} target="showsite" title={npmorg}>
+                  {wcut(npmorg)}
+                </a>
                 <h6>demo</h6>
-                <div className="content1">
-                  <a href={demo} target="showsite" title={demo}>
-                    {wcut(demo)}
-                  </a>
-                </div>
+                <a href={demo} target="showsite" title={demo}>
+                  {wcut(demo)}
+                </a>
                 <h6>youtube</h6>
                 {videoTitle &&
                   videoTitle.split(";").map((title, j) => {
-                    return (
-                      <div className="content">
-                        <a href={`#showyoutube_${j}`}>{title}</a>
-                      </div>
-                    )
+                    return <a href={`#showyoutube_${j}`}>{title}</a>
                   })}
               </div>
             </section>

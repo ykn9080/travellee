@@ -10,6 +10,7 @@
     "@mdx-js/react": "^1.6.22",
     "@theme-ui/preset-funk": "^0.11.3",
     "antd": "^4.16.13",
+    "commentbox.io": "^2.1.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.13.1",
     "gatsby-image": "^3.11.0",
