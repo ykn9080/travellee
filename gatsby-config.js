@@ -6,7 +6,7 @@ module.exports = {
     siteUrl: `https://ykn9080.github.io`,
     logo: `${__dirname}/src/images/yknam1.jpg`,
   },
-  pathPrefix: "/gatsbymyhome",
+  pathPrefix: "/ykn9080.github.io",
   plugins: [
     {
       resolve: `gatsby-plugin-google-gtag`,

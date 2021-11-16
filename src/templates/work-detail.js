@@ -20,17 +20,11 @@ const WorkDetail = ({ data, location }) => {
     npmorg,
     demo,
   } = data.mdx.frontmatter
-  //const pathToImage = getImage(image)
-  // const [open, setOpen] = useState(false)
-  // const [path, setPath] = useState(false)
-  // const [loading, setLoading] = useState(false)
+
   function wcut(origin) {
     return wordCut(origin, 40, "", "...")
   }
 
-  // const handleClose = () => {
-  //   setOpen(false)
-  // }
   const urlarr1 = location.pathname.split("/")
   const urlarr = pathClean(urlarr1)
 
