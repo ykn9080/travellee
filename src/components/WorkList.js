@@ -52,7 +52,7 @@ const WorkList = ({ data, type }) => {
               state={{ list: list }}
             >
               <Img
-                className="imgInterest"
+                className="imgInterest123"
                 fluid={dt.frontmatter.thumb.childImageSharp.fluid}
               />
             </Link>

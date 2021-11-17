@@ -79,7 +79,7 @@
   --desktop: 1200px;
   --laptop: 1024px;
   --tablet: 768px;
-  --phone: 480px;
+  --phone: 360px;
 }
 html {
   font-size: var(--defaultFontSize);
@@ -105,10 +105,10 @@ body {
 }
 main {
   margin: 0 auto;
-  padding: 0 10px 50px 5px;
+  padding: 0 10px 50px 10px;
   min-height: calc(100vh - (6rem + 4rem));
   max-width: var(--desktop);
-  min-width: var(--phone);
+  min-width: 340px;
 }
 header {
   margin-bottom: 30px;
@@ -260,7 +260,7 @@ blockquote cite:before {
 /* .gridtwo p {
   font-size: 1.2em;
   font-weight: 500;
-  max-width: 420px;
+  max-width: var(--phone);
 } */
 @media screen and (min-width: 768px) {
   .gridtwo p {
@@ -636,6 +636,7 @@ nav {
   margin: 0 auto;
   grid-template-columns: 1fr;
   position: relative;
+  padding: 50px;
 }
 .interestlist h5 {
   display: none;
@@ -643,6 +644,9 @@ nav {
   bottom: 0;
   left: 50%;
   background-color: "transparent";
+}
+.ImgInterest {
+  width: 150px;
 }
 .interestlist .imgInterest:hover {
   opacity: 0.5;
@@ -758,7 +762,7 @@ nav {
   }
 }
 .Img1 {
-  height: 150px;
+  width: 350px;
   border: solid 1px gray;
   /* border-radius: 8px;
   padding: 5px;
@@ -804,12 +808,10 @@ nav {
 .Img2 {
   margin-top: 20px;
   display: block;
-  width: 60%;
+  width: 80%;
 }
 .Img3 {
-  max-height: 400px;
-  max-width: 100%;
-  display: block;
+  max-height: 170px;
 }
 .Imgdetail {
   width: 100%;
@@ -818,8 +820,7 @@ nav {
   object-fit: fill;
 }
 .Img2div {
-  min-height: 100px;
-  min-width: 250px;
+  width: 250px;
 }
 
 .interestimg {
@@ -957,20 +958,20 @@ h4 {
   margin-bottom: 5px !important;
 }
 .video iframe {
-  width: 426px;
-  height: 240px;
+  width: 340px;
+  height: 230px;
 }
 
 @media only screen and (min-width: 576px) {
   .video iframe {
-    width: 660px;
-    height: 371px;
+    width: 640px;
+    height: 360px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .video iframe {
-    width: 768px;
-    height: 432px;
+    width: 734px;
+    height: 412px;
   }
 }

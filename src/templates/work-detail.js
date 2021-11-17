@@ -76,8 +76,7 @@ const WorkDetail = ({ data, location }) => {
                     )
                   })}
                 </ul>
-                {/* </div>
-              <div className="toc"> */}
+
                 <h6>github</h6>
                 <a href={github} target="showsite" title={github}>
                   {wcut(github)}

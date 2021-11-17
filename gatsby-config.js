@@ -6,32 +6,9 @@ module.exports = {
     siteUrl: `https://ykn9080.github.io`,
     logo: `${__dirname}/src/images/yknam1.jpg`,
   },
-  pathPrefix: "/ykn9080.github.io",
+  pathPrefix: "/",
   plugins: [
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-TC8HLTTNZF", // Google Analytics / GA
-        ],
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: false,
-        },
-      },
-    },
-    // {
-    //   resolve: `gatsby-plugin-gtag`,
-    //   options: {
-    //     trackingId: `G-F75DY4WLSP`,
-    //     head: false,
-    //     anonymize: true,
-    //   },
-    // },
     `gatsby-plugin-react-helmet`,
-
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

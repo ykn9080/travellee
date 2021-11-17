@@ -36,7 +36,7 @@ const WorkList = ({ data, location }) => {
                   <h2>{work.frontmatter.title}</h2>
                   <div className="Img2div">
                     <Img
-                      className="Img1"
+                      className="Img3"
                       fluid={work.frontmatter.thumb.childImageSharp.fluid}
                     />
                   </div>
