@@ -30,6 +30,9 @@ export const About = ({ location }) => {
               placeholder="tracedSVG"
             ></StaticImage>
           </section>
+          <section>
+            <p>{intl.formatMessage({ id: "resume" })}</p>
+          </section>
         </main>
       </Layout>
     </>

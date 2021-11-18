@@ -4,6 +4,7 @@ import Breadcrumb from "../components/BreadCrumb"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { wordCut } from "../utility"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
@@ -33,11 +34,8 @@ const InterestList = ({ data, location }) => {
                   key={interest.title}
                   state={{ list: list }}
                 >
-                  <div className="Img2div">
-                    <Img
-                      className="Img2"
-                      fluid={interest.frontmatter.thumb.childImageSharp.fluid}
-                    />
+                  <div>
+                    <GatsbyImage image={getImage(interest.frontmatter.thumb)} />
                   </div>
                   <h2>{interest.frontmatter.title}</h2>
                   <p title={interest.frontmatter.excerpt}>
@@ -68,9 +66,11 @@ export const query = graphql`
           videoSourceURL
           thumb {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                width: 400
+                blurredOptions: { width: 50 }
+                placeholder: BLURRED
+              )
             }
           }
           slug

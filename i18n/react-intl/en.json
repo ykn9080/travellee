@@ -9,5 +9,9 @@
   "index-interest": "All technologies necessary for MERN stack development. Development-related technologies such as Documentation, S3 file server, and DevOps-related technologies such as Docker and CI/CD",
   "about-head": "About me",
   "about-sub": "FullStack javascript programmer",
-  "about-body": "Hi, this is Young Nam, over 10 year experienced freelance web and mobile programmer.^My skill is focused on MERN statck, good at Nodejs, React, MongoDB, Mysql. Also DevOps related fileds - Docker , CI/CD, and git etc..^I graduaged from computer science, Korea National Open University. I can communicate in English and Korean.^I prefer working part-time, or on a project basis."
+  "about-body": "Hi, this is Young Nam, over 10 year experienced freelance web and mobile programmer.^My skill is focused on MERN statck, good at Nodejs, React, MongoDB, Mysql. Also DevOps related fileds - Docker , CI/CD, and git etc..^I graduaged from computer science, Korea National Open University. I can communicate in English and Korean.^I prefer working part-time, or on a project basis.",
+  "about-me": "About me",
+  "about-me-content": "As a 10 year fullstack developer,  I cover site planning, web/mobile development and DevOps. Everyday I enjoy coding and learning new knowledge.",
+  "address": "#1st YangjiKumho Apt, Bundangku, Kyungkido, Korea",
+  "phone": "+82.10.3728.7923"
 }

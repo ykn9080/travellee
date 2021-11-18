@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Breadcrumb from "../components/BreadCrumb"
-import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { wordCut } from "../utility"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { useIntl } from "react-intl"
@@ -34,11 +34,8 @@ const WorkList = ({ data, location }) => {
                   state={{ list: list }}
                 >
                   <h2>{work.frontmatter.title}</h2>
-                  <div className="Img2div">
-                    <Img
-                      className="Img3"
-                      fluid={work.frontmatter.thumb.childImageSharp.fluid}
-                    />
+                  <div>
+                    <GatsbyImage image={getImage(work.frontmatter.thumb)} />
                   </div>
                   <p title={work.frontmatter.excerpt}>
                     {wordCut(work.frontmatter.excerpt, 80, "", " ...")}
@@ -68,9 +65,13 @@ export const query = graphql`
           videoSourceURL
           thumb {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                width: 360
+                blurredOptions: { width: 50 }
+                placeholder: BLURRED
+                transformOptions: { cropFocus: CENTER }
+                aspectRatio: 1.5
+              )
             }
           }
           slug

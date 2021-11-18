@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Breadcrumb from "../components/BreadCrumb"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import Video from "../components/Video"
@@ -27,7 +28,11 @@ const WorkDetail = ({ data, location }) => {
 
   const urlarr1 = location.pathname.split("/")
   const urlarr = pathClean(urlarr1)
-
+  const sideItems = [
+    { title: "github", url: github },
+    { title: "npm", url: npmorg },
+    { title: "demo", url: demo },
+  ]
   return (
     <>
       <Layout>
@@ -41,9 +46,13 @@ const WorkDetail = ({ data, location }) => {
             <section>
               <article className="gridtwo">
                 <p>{excerpt}</p>
-                <Img
+                {/* <GatsbyImage
                   className="interestimg"
                   fluid={featureImage.childImageSharp.fluid}
+                /> */}
+                <GatsbyImage
+                  className="interestimg"
+                  image={getImage(featureImage)}
                 />
               </article>
               <article>
@@ -51,7 +60,7 @@ const WorkDetail = ({ data, location }) => {
                   <Video videoSrcURL={videoSourceURL} videoTitle={videoTitle} />
                 )}
               </article>
-              <article>
+              <article className="mdxrend">
                 <MDXRenderer>{data.mdx.body}</MDXRenderer>
               </article>
             </section>
@@ -76,19 +85,16 @@ const WorkDetail = ({ data, location }) => {
                     )
                   })}
                 </ul>
-
-                <h6>github</h6>
-                <a href={github} target="showsite" title={github}>
-                  {wcut(github)}
-                </a>
-                <h6>npm</h6>
-                <a href={npmorg} target="showsite" title={npmorg}>
-                  {wcut(npmorg)}
-                </a>
-                <h6>demo</h6>
-                <a href={demo} target="showsite" title={demo}>
-                  {wcut(demo)}
-                </a>
+                {sideItems.map((ah, i) => {
+                  return (
+                    <>
+                      <h6>{ah.title}</h6>
+                      <a href={ah.url} target="showsite" title={ah.url}>
+                        {wcut(ah.url)}
+                      </a>
+                    </>
+                  )
+                })}
                 <h6>youtube</h6>
                 {videoTitle &&
                   videoTitle.split(";").map((title, j) => {
@@ -120,9 +126,11 @@ export const query = graphql`
         videoTitle
         featureImage {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(
+              width: 300
+              blurredOptions: { width: 50 }
+              placeholder: BLURRED
+            )
           }
         }
       }

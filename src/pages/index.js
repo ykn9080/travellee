@@ -11,13 +11,14 @@ import { MultiPhrase } from "../utility"
 
 export default function Home({ data }) {
   const intl = useIntl()
-  const works = _.filter(data.allMdx.nodes, o => {
+  console.log(data)
+  const works = _.filter(data.work.nodes, o => {
     return o.frontmatter.type === "work"
   })
-  const interests = _.filter(data.allMdx.nodes, o => {
+  const interests = _.filter(data.interest.nodes, o => {
     return o.frontmatter.type === "interest"
   })
-  console.log(works)
+
   return (
     <Layout>
       <SEO title="Home " />
@@ -84,7 +85,7 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query Myslick($locale: String!) {
-    allMdx(filter: { fields: { locale: { eq: $locale } } }) {
+    work: allMdx(filter: { fields: { locale: { eq: $locale } } }) {
       nodes {
         frontmatter {
           title
@@ -93,9 +94,38 @@ export const query = graphql`
           videoSourceURL
           thumb {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                width: 360
+                blurredOptions: { width: 50 }
+                placeholder: BLURRED
+                transformOptions: { cropFocus: CENTER }
+                aspectRatio: 1.5
+              )
+            }
+          }
+          slug
+          seq
+          npmorg
+          github
+          excerpt
+          type
+        }
+      }
+    }
+    interest: allMdx(filter: { fields: { locale: { eq: $locale } } }) {
+      nodes {
+        frontmatter {
+          title
+          demo
+          videoTitle
+          videoSourceURL
+          thumb {
+            childImageSharp {
+              gatsbyImageData(
+                width: 200
+                blurredOptions: { width: 20 }
+                placeholder: BLURRED
+              )
             }
           }
           slug

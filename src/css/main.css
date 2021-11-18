@@ -65,6 +65,7 @@
   --extraSmallText: 0.7em;
   /* rest */
   --backgroundColor: var(--grey-0);
+  --footerBackgroundColor: var(--grey-1000);
   --navbarColor: var(--green-dark);
   --textColor: var(--grey-1000);
   --navtextColor: var(--grey-0);
@@ -110,6 +111,9 @@ main {
   max-width: var(--desktop);
   min-width: 340px;
 }
+p {
+  margin: 0;
+}
 header {
   margin-bottom: 30px;
 }
@@ -125,7 +129,7 @@ article p,
 header p {
   background: var(--backgroundColor);
   color: var(--textColor);
-  /* margin-top: -20px !important; */
+  margin-top: -5px !important;
   font-weight: 400;
 }
 
@@ -147,10 +151,6 @@ header p {
   }
 }
 
-/* p {
-  margin: 0;
-  margin-bottom: 0.5rem;
-} */
 header p {
   font-size: 1.2em;
 }
@@ -165,8 +165,8 @@ h3,
 h4,
 h5 {
   margin: 0;
-  margin-bottom: 1.38rem;
-  /* font-family: var(--headingFont); */
+  /* margin-bottom: 1.38rem;
+  font-family: var(--headingFont); */
   /* line-height: 1.3; */
   text-transform: capitalize;
   /* letter-spacing: var(--letterSpacing); */
@@ -660,16 +660,17 @@ nav {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 .sideList {
   list-style: none;
   color: var(--textColor);
   background-color: var(--backgroundColor);
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.2em;
 }
 .sideList h6 {
   display: block;
-  font-size: 1em;
+  font-size: 1.2em;
 
   margin: 0;
   font-weight: 600;
@@ -714,42 +715,18 @@ nav {
   color: var(--breadhover);
   text-decoration: underline;
 }
-/* 
-.toc {
-  line-height: 1.5;
-  margin-bottom: 1.71428571rem;
-  font-size: 0.9em;
-}
-.toc h6 {
-  display: block;
-  font-size: 1em;
-  color: var(--textColor);
-  margin: 0;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.toc div {
-  color: var(--textColor);
-  font-weight: 300;
-  padding: 0.3rem;
-  margin-bottom: 0.3rem;
-  cursor: pointer;
-  margin: 0 10px;
-}
-.toc a {
-  color: var(--textColor);
-}
-.toc a:hover {
-  text-decoration: underline;
-  color: blue;
-} */
-@media screen and (min-width: 1024px) {
+@media only screen and (min-width: 1200px) {
   .sideList {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 0.9em;
+  }
+  .sideList h6 {
+    font-size: 1em;
   }
 }
+
 @media screen and (min-width: 992px) {
   .content {
     margin: 0 auto;
@@ -797,11 +774,11 @@ nav {
 }
 
 .ImgLarge {
-  height: 350px;
+  height: 400px;
 }
 .Imgcontainer {
   width: 40%;
-  max-height: 300px;
+  max-height: 400px;
   box-sizing: border-box;
 }
 
@@ -832,21 +809,6 @@ nav {
   box-shadow: var(--shadow-3);
   transition: var(--transition); */
 }
-/* @media screen and (max-width: 1200px) {
-  .bodycontent {
-    grid-template-columns: 1fr 1fr;
-    margin: 0, 10px;
-  }
-  .headtitle,
-  nav.breadcrumb {
-    margin: 0 10px;
-  }
-} */
-/* @media screen and (max-width: 700px) {
-  .bodycontent {
-    grid-template-columns: 1fr;
-  }
-} */
 
 /*#########*/
 /* Contact */
@@ -903,16 +865,6 @@ h4 {
     font-size: 4rem;
     margin-bottom: 0;
   }
-}
-
-.dark-theme {
-  --backgroundColor: var(--darkback);
-  --navbarColor: var(--green-light);
-  --navtextColor: var(--grey-1000);
-  --textColor: var(--grey-0);
-  --breadseperator: var(--grey-0);
-  --breadanchor: var(--grey-0);
-  --breadhover: var(--yellow);
 }
 
 #dvLang {
@@ -974,4 +926,214 @@ h4 {
     width: 734px;
     height: 412px;
   }
+}
+.mdxrend {
+  width: 340px;
+  margin: 20px 0;
+}
+@media only screen and (min-width: 390px) {
+  .mdxrend {
+    width: 370px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .mdxrend {
+    width: 460px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .mdxrend {
+    width: 740px;
+  }
+}
+
+.footer-distributed {
+  background: var(--footerBackgroundColor);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+  width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3 {
+  color: #ffffff;
+  font: normal 36px "Open Sans", cursive;
+  margin: 0;
+}
+
+.footer-distributed h3 span {
+  color: lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+  color: #222;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+  width: 35%;
+}
+
+.footer-distributed .footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 400;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+  color: lightseagreen;
+  text-decoration: none;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight: 300;
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+  width: 20%;
+}
+
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: #cdcdce;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+  margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+  .footer-distributed {
+    font: bold 14px sans-serif;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center i {
+    margin-left: 0;
+  }
+}
+
+.dark-theme {
+  --backgroundColor: var(--darkback);
+  --footerBackgroundColor: #666;
+  --navbarColor: var(--green-light);
+  --navtextColor: var(--grey-1000);
+  --textColor: var(--grey-0);
+  --breadseperator: var(--grey-0);
+  --breadanchor: var(--grey-0);
+  --breadhover: var(--yellow);
 }

@@ -1,6 +1,5 @@
 import React from "react"
-import Img from "gatsby-image"
-import { wordCut } from "../utility"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import "../css/main.css"
 
@@ -23,15 +22,9 @@ const WorkList = ({ data, type }) => {
                   state={{ list: list }}
                 >
                   <h1>{work.frontmatter.title}</h1>
-                  <div className="Img2div">
-                    <Img
-                      className="Img1"
-                      fluid={work.frontmatter.thumb.childImageSharp.fluid}
-                    />
+                  <div>
+                    <GatsbyImage image={getImage(work.frontmatter.thumb)} />
                   </div>
-                  {/* <p title={work.frontmatter.excerpt}>
-                    {wordCut(work.frontmatter.excerpt, 80, "", " ...")}
-                  </p> */}
                 </Link>
               </div>
             )
@@ -51,10 +44,7 @@ const WorkList = ({ data, type }) => {
               title={dt.frontmatter.title}
               state={{ list: list }}
             >
-              <Img
-                className="imgInterest123"
-                fluid={dt.frontmatter.thumb.childImageSharp.fluid}
-              />
+              <GatsbyImage image={getImage(dt.frontmatter.thumb)} />
             </Link>
           )
         })}
