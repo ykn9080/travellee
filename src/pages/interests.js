@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import Breadcrumb from "../components/BreadCrumb"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
-import Img from "gatsby-image"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { wordCut } from "../utility"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
@@ -15,7 +14,7 @@ const InterestList = ({ data, location }) => {
   const list = interests.map(work => {
     return { title: work.frontmatter.title, slug: work.frontmatter.slug }
   })
-
+  console.log(interests)
   return (
     <Layout>
       <Seo title="Interest List" />

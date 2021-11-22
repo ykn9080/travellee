@@ -75,12 +75,19 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1200,
+              linkImagesToOriginal: false,
             },
           },
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               icon: false,
+            },
+          },
+          {
+            resolve: "gatsby-remark-image-attributes",
+            options: {
+              // dataAttributes: false
             },
           },
           `gatsby-remark-embed-video`,
@@ -103,7 +110,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-i18n-react-intl`,
       options: {
-        defaultLocale: `./i18n/react-intl/kr.json`,
+        defaultLocale: `./i18n/react-intl/ko.json`,
       },
     },
 
@@ -117,6 +124,6 @@ module.exports = {
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }
