@@ -184,7 +184,7 @@ const Navbar = () => {
             {krimg1}
             <span>한국어</span>
           </Link>
-          <Link
+          {/* <Link
             to={`/tw${window.location.pathname
               .replace("/tw", "")
               .replace("/en", "")}`}
@@ -193,7 +193,7 @@ const Navbar = () => {
           >
             {twimg1}
             <span>中國語</span>
-          </Link>
+          </Link> */}
         </div>
       )}
     </>

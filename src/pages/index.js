@@ -11,7 +11,6 @@ import { MultiPhrase } from "../utility"
 
 export default function Home({ data }) {
   const intl = useIntl()
-  console.log(navigator.language)
   const works = _.filter(data.work.nodes, o => {
     return o.frontmatter.type === "work"
   })
