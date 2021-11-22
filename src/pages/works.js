@@ -27,16 +27,15 @@ const WorkList = ({ data, location }) => {
         <section className="bodycontent">
           {works.map(work => {
             return (
-              <div className="ImgContainer ImgLarge">
+              <div className="ImgContainer ImgLarge ContanierBox">
                 <Link
                   to={`/works/${work.frontmatter.slug}`}
                   key={work.title}
                   state={{ list: list }}
                 >
                   <h2>{work.frontmatter.title}</h2>
-                  <div>
-                    <GatsbyImage image={getImage(work.frontmatter.thumb)} />
-                  </div>
+                  <GatsbyImage image={getImage(work.frontmatter.thumb)} />
+
                   <p title={work.frontmatter.excerpt}>
                     {wordCut(work.frontmatter.excerpt, 80, "", " ...")}
                   </p>

@@ -27,13 +27,13 @@ const InterestList = ({ data, location }) => {
         <section className="bodycontent">
           {interests.map(interest => {
             return (
-              <div className="ImgContainer">
+              <div className="ImgContainer ContanierBox">
                 <Link
                   to={`/interests/${interest.frontmatter.slug}`}
                   key={interest.title}
                   state={{ list: list }}
                 >
-                  <div>
+                  <div style={{ minHeight: 50, verticalAlign: "middle" }}>
                     <GatsbyImage image={getImage(interest.frontmatter.thumb)} />
                   </div>
                   <h2>{interest.frontmatter.title}</h2>

@@ -1,4 +1,6 @@
 {
+  "fullstack": "FullStack Developer",
+  "meanstack": "MEAN stack, Docker",
   "mypositioning": "Fullstack web developer",
   "index-introduce": "Web and mobile changes rapidly, and new knowledge to acquire seems to increase exponentially. It has become more important to select essential technologies among numerous fields.^ My interest is to easily modularize and reuse CI/CD technology related to MERN stack, npm module or docker-compose, etc.",
   "index-head": "A sample that isolates reusable modules from the project output. It is a mixture of npm published and cloned from github.",

@@ -77,6 +77,7 @@ export const pathSplit = pathname => {
 
 export const findLocale = pathname => {
   if (pathname !== "" && pathSplit(pathname)[1] === "en") return "en"
+  else if (pathname !== "" && pathSplit(pathname)[1] === "tw") return "tw"
   else return "kr"
 }
 

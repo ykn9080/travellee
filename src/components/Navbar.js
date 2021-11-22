@@ -54,6 +54,9 @@ const Navbar = () => {
   const usimg = (
     <StaticImage width={25} src="../images/isoflag/us.png" alt="English" />
   )
+  const twimg = (
+    <StaticImage width={25} src="../images/isoflag/tw.png" alt="Chinese" />
+  )
   const krimg1 = (
     <StaticImage
       className="flagimg"
@@ -68,6 +71,14 @@ const Navbar = () => {
       width={25}
       src="../images/isoflag/us.png"
       alt="English"
+    />
+  )
+  const twimg1 = (
+    <StaticImage
+      className="flagimg"
+      width={25}
+      src="../images/isoflag/tw.png"
+      alt="Chinese"
     />
   )
   return (
@@ -145,7 +156,7 @@ const Navbar = () => {
                   setShowLang(!showLang)
                 }}
               >
-                {lang === "en" ? usimg : krimg}
+                {lang === "en" ? usimg : lang === "tw" ? twimg : krimg}
               </div>
             </div>
           </div>
@@ -154,7 +165,9 @@ const Navbar = () => {
       {showLang && (
         <div id="dvLang">
           <Link
-            to={`/en${window.location.pathname.replace("/en", "")}`}
+            to={`/en${window.location.pathname
+              .replace("/en", "")
+              .replace("/tw", "")}`}
             hrefLang="en"
             onClick={() => selLang("en")}
           >
@@ -162,12 +175,24 @@ const Navbar = () => {
             <span>English</span>
           </Link>
           <Link
-            to={`${window.location.pathname.replace("/en", "")}`}
+            to={`${window.location.pathname
+              .replace("/en", "")
+              .replace("/tw", "")}`}
             hrefLang="ko"
             onClick={() => selLang("ko")}
           >
             {krimg1}
             <span>한국어</span>
+          </Link>
+          <Link
+            to={`/tw${window.location.pathname
+              .replace("/tw", "")
+              .replace("/en", "")}`}
+            hrefLang="tw"
+            onClick={() => selLang("tw")}
+          >
+            {twimg1}
+            <span>中國語</span>
           </Link>
         </div>
       )}

@@ -5,32 +5,47 @@ seq: 7
 type: interest
 language: kr
 featureImage: ../images/interest/gatsby/gatsby_home.png
-thumb: ../images/interest/gatsby/gatsby_logo.jpg
+thumb: ../images/interest/gatsby_logo.jpg
 github:
 demo: https://ykn9080.github.io
 videoSourceURL:
 videoTitle:
+embeddedImagesRemote:
+  - ../images/interest/gatsby/gatsby_laptop1.png
+  - ../images/interest/gatsby/gatsby_pad1.png
+  - ../images/interest/gatsby/gatsby_mobile1.png
+  - ../images/interest/gatsby/gatsby_laptop1_dark.png
+  - ../images/interest/gatsby/gatsby_pad1_dark.png
+  - ../images/interest/gatsby/gatsby_mobile1_dark.png
+  - ../images/interest/gatsby/gatsby_en.png
+  - ../images/interest/gatsby/gatsby_kr.png
+  - ../images/interest/gatsby/gatsby_tw.png
+
 excerpt: Gatsby는 static site를 생성하는 웹프레임워크입니다.;React와 함께 사용하면 React의 모든 기능과 함께 gatsby의 수많은 플러그인 툴들을 사용하여 Rich하면서 가벼운 정적 사이틀 생성할 수 있습니다.
 ---
 
-> | Light Mode                                                 | Dark Mode                                                       |
-> | ---------------------------------------------------------- | --------------------------------------------------------------- |
-> | <img src="../images/interest/gatsby/gatsby_laptop1.png" /> | <img src="../images/interest/gatsby/gatsby_laptop1_dark.png" /> |
-> | <img src="../images/interest/gatsby/gatsby_pad1.png"/>     | <img src="../images/interest/gatsby/gatsby_pad1_dark.png" />    |
-> | <img src="../images/interest/gatsby/gatsby_mobile1.png"/>  | <img src="../images/interest/gatsby/gatsby_mobile1_dark.png"/>  |
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-<img
-  src="../images/interest/gatsby/gatsby_laptop1.png"
-  style={{ width: 100 }}
-/>
+## Responsive design
 
-![FormEdit](../images/interest/gatsby/gatsby_laptop1.png)
-![FormEdit](../images/interest/gatsby/gatsby_pad1.png "#width=32px;height=32px;position=absolute;lightbox=true;title=Image Title")
+<div className="gridthree">
+  <GatsbyImage alt="laptop" image={getImage(props.localImages[0])} />
+  <GatsbyImage alt="pad" image={getImage(props.localImages[1])} />
+  <GatsbyImage alt="mobile" image={getImage(props.localImages[2])} />
+</div>
 
-![FormEdit](../images/interest/gatsby/gatsby_mobile1_small.png)
+## Dark Mode
 
-### Dark Mode
+<div className="gridthree">
+  <GatsbyImage alt="laptop_dark" image={getImage(props.localImages[3])} />
+  <GatsbyImage alt="pad_dark" image={getImage(props.localImages[4])} />
+  <GatsbyImage alt="mobile_dark" image={getImage(props.localImages[5])} />
+</div>
 
-![FormEdit](../images/interest/gatsby/gatsby_laptop1_dark.png)
-![FormEdit](../images/interest/gatsby/gatsby_pad1_dark.png)
-![FormEdit](../images/interest/gatsby/gatsby_mobile1_dark.png)
+## MultiLanguage
+
+<div className="gridthree grideven">
+  <GatsbyImage alt="english" image={getImage(props.localImages[6])} />
+  <GatsbyImage alt="korean" image={getImage(props.localImages[7])} />
+  <GatsbyImage alt="chinese" image={getImage(props.localImages[8])} />
+</div>

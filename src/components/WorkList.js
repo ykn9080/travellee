@@ -15,16 +15,14 @@ const WorkList = ({ data, type }) => {
         <section className="bodycontent">
           {data.map(work => {
             return (
-              <div className="ImgContainer1">
+              <div className="ImgContainer">
                 <Link
                   to={`/works/${work.frontmatter.slug}`}
                   key={work.title}
                   state={{ list: list }}
                 >
                   <h1>{work.frontmatter.title}</h1>
-                  <div>
-                    <GatsbyImage image={getImage(work.frontmatter.thumb)} />
-                  </div>
+                  <GatsbyImage image={getImage(work.frontmatter.thumb)} />
                 </Link>
               </div>
             )

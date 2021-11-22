@@ -1,0 +1,19 @@
+{
+  "fullstack": "全栈式 工程师",
+  "meanstack": "MEAN stack, 码头工人",
+  "mypositioning": "全栈式 工程师",
+  "index-introduce": "网络 和移動設備瞬息萬變，需要獲取的新知識似乎呈指數級增長。 在眾多領域中選擇必要技術變得更加重要。^ 我的興趣是輕鬆模塊化和重用與 MERN 堆棧、npm 模塊或 docker-compose 等相關的 CI/CD 技術。",
+  "index-head": "將可重用模塊與項目輸出隔離的示例。 它是從 github 發布和克隆的 npm 的混合體。",
+  "work-head": "工作組合",
+  "work-sub": "我創建的項目和模塊",
+  "interest-head": "我的興趣",
+  "interest-sub": "我經常使用或感興趣的東西",
+  "index-interest": "MERN 堆棧開發所需的所有技術。 文檔、S3文件服務器等開發相關技術，码头工人、CI/CD等DevOps相關技術",
+  "about-head": "關於我",
+  "about-sub": "全栈式 javascript 工程师",
+  "about-body": "您好，我是 南永基，擁有超過 10 年經驗的自由網絡和移動程序員。^我的技能專注於 MERN statck，擅長 Nodejs、React、MongoDB、Mysql。 還有與 DevOps 相關的領域 - Docker、CI/CD 和 git 等。^我畢業於韓國國立開放大學計算機科學專業。 我可以用英語和韓語交流。^我更喜歡兼職工作或項目。",
+  "about-me": "About me",
+  "about-me-content": "作為一名 10 年全棧開發人員，我負責網站規劃、Web/移動開發和 DevOps。 每天我都喜歡編碼和學習新知識.",
+  "address": "#1st YangjiKumho Apt, Bundangku, Kyungkido, Korea",
+  "phone": "+82.10.3728.7923"
+}

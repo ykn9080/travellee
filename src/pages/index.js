@@ -11,7 +11,7 @@ import { MultiPhrase } from "../utility"
 
 export default function Home({ data }) {
   const intl = useIntl()
-  console.log(data)
+  console.log(navigator.language)
   const works = _.filter(data.work.nodes, o => {
     return o.frontmatter.type === "work"
   })
@@ -32,8 +32,8 @@ export default function Home({ data }) {
         ></StaticImage>
         <div className="hero-container">
           <div className="hero-text">
-            <h1>Fullstack Developer</h1>
-            <h2>MEAN stack, Docker</h2>
+            <h1>{intl.formatMessage({ id: "fullstack" })}</h1>
+            <h2>{intl.formatMessage({ id: "meanstack" })}</h2>
           </div>
         </div>
       </div>

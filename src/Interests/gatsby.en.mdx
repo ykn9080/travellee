@@ -5,10 +5,47 @@ seq: 7
 type: interest
 language: en
 featureImage: ../images/interest/gatsby/gatsby_home.png
-thumb: ../images/interest/gatsby/gatsby_logo.jpg
+thumb: ../images/interest/gatsby_logo.jpg
 github:
 demo: https://ykn9080.github.io
 videoSourceURL:
 videoTitle:
+embeddedImagesRemote:
+  - ../images/interest/gatsby/gatsby_laptop1.png
+  - ../images/interest/gatsby/gatsby_pad1.png
+  - ../images/interest/gatsby/gatsby_mobile1.png
+  - ../images/interest/gatsby/gatsby_laptop1_dark.png
+  - ../images/interest/gatsby/gatsby_pad1_dark.png
+  - ../images/interest/gatsby/gatsby_mobile1_dark.png
+  - ../images/interest/gatsby/gatsby_en.png
+  - ../images/interest/gatsby/gatsby_kr.png
+  - ../images/interest/gatsby/gatsby_tw.png
+
 excerpt: Gatsby is an open-source framework that combines functionality from React, GraphQL and Webpack into a single tool for building static websites and apps.
 ---
+
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
+
+## Responsive design
+
+<div className="gridthree">
+  <GatsbyImage alt="laptop" image={getImage(props.localImages[0])} />
+  <GatsbyImage alt="pad" image={getImage(props.localImages[1])} />
+  <GatsbyImage alt="mobile" image={getImage(props.localImages[2])} />
+</div>
+
+## Dark Mode
+
+<div className="gridthree">
+  <GatsbyImage alt="laptop_dark" image={getImage(props.localImages[3])} />
+  <GatsbyImage alt="pad_dark" image={getImage(props.localImages[4])} />
+  <GatsbyImage alt="mobile_dark" image={getImage(props.localImages[5])} />
+</div>
+
+## MultiLanguage
+
+<div className="gridthree grideven">
+  <GatsbyImage alt="english" image={getImage(props.localImages[6])} />
+  <GatsbyImage alt="korean" image={getImage(props.localImages[7])} />
+  <GatsbyImage alt="chinese" image={getImage(props.localImages[8])} />
+</div>

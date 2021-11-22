@@ -14,6 +14,7 @@ const WorkDetail = ({ data, location }) => {
     title,
     excerpt,
     featureImage,
+    embeddedImagesRemote,
     videoSourceURL,
     videoTitle,
     github,
@@ -60,7 +61,9 @@ const WorkDetail = ({ data, location }) => {
                 )}
               </article>
               <article className="mdxrend">
-                <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                <MDXRenderer localImages={embeddedImagesRemote}>
+                  {data.mdx.body}
+                </MDXRenderer>
               </article>
             </section>
             <section>
@@ -130,6 +133,11 @@ export const query = graphql`
               blurredOptions: { width: 50 }
               placeholder: BLURRED
             )
+          }
+        }
+        embeddedImagesRemote {
+          childImageSharp {
+            gatsbyImageData(blurredOptions: { width: 50 }, placeholder: BLURRED)
           }
         }
       }

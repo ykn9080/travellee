@@ -14,5 +14,13 @@
     "localName": "한국어",
     "langDir": "ltr",
     "dateFormat": "YYYY-MM-DD"
+  },
+  {
+    "code": "tw",
+    "hrefLang": "zh-tw",
+    "name": "chinese",
+    "localName": "中國語",
+    "langDir": "ltr",
+    "dateFormat": "YYYY-MM-DD"
   }
 ]
