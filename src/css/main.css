@@ -84,6 +84,7 @@
 }
 html {
   font-size: var(--defaultFontSize);
+  scroll-behavior: smooth;
 }
 
 @media only screen and (min-width: 576px) {
@@ -936,7 +937,7 @@ h4 {
   background-color: white;
   display: flex;
   flex-direction: row;
-  width: 320px;
+  width: 200px;
   padding: 10px;
   z-index: 100;
   text-align: left;
@@ -963,7 +964,7 @@ h4 {
     flex-direction: column;
     width: 120px;
     right: 40%;
-    height: 120px;
+    height: 100px;
   }
 }
 
@@ -1046,7 +1047,7 @@ h4 {
 
 .footer-distributed h3 {
   color: #ffffff;
-  font: normal 36px "Open Sans", cursive;
+  font: normal 42px "Open Sans", cursive;
   margin: 0;
 }
 
@@ -1058,7 +1059,7 @@ h4 {
 
 .footer-distributed .footer-links {
   color: #ffffff;
-  margin: 20px 0 12px;
+  margin: 20px 10px 20px;
   padding: 0;
 }
 
@@ -1122,7 +1123,7 @@ h4 {
 }
 
 .footer-distributed .footer-links a:before {
-  content: "|";
+  content: " | ";
   font-weight: 300;
   font-size: 20px;
   left: 0;
