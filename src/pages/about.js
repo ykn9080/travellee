@@ -33,12 +33,11 @@ export const About = ({ location }) => {
 
     document.querySelectorAll(".container p").forEach(p => {
       observer.observe(p)
-      console.log("watching", p.textContent)
+      //console.log("watching", p.textContent)
     })
   }
   useEffect(() => {
     handleContentLoaded()
-    //document.addEventListener("DOMContentLoaded", handleContentLoaded)
   }, [])
   return (
     <>
